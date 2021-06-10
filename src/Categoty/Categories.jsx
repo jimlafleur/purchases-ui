@@ -14,7 +14,7 @@ const Categories = () => {
     return (
         <div className="container-fluid">
             <CategoryAddForm fetchCategories={fetchCategories}/>
-            <CategoryList categories={categories}/>
+            <CategoryList categories={categories} refreshCategories={fetchCategories}/>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React from "react";
+import CategoryRow from "./CategoryRow";
 
-const CategoryList = ({categories}) => {
+const CategoryList = ({categories, refreshCategories}) => {
     return (
         <table className="table">
             <thead>
@@ -10,11 +11,7 @@ const CategoryList = ({categories}) => {
             </tr>
             </thead>
             <tbody>
-            {categories.map(category => (
-                <tr>
-                    <td>{category.name}</td>
-                    <td>{category.description}</td>
-                </tr>))}
+            {categories.map(category => <CategoryRow category={category} refreshCategories={refreshCategories}/>)}
             </tbody>
         </table>
     )

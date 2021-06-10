@@ -16,10 +16,7 @@ const MyNavbar = () => {
                                 <a className="nav-link" aria-current="page" href="lists">Списки покупок</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="purchases">Покупки</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="categories">Категории</a>
+                                <a className="nav-link" href="categories">Категории товаров</a>
                             </li>
                         </ul>
                     </div>
