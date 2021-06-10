@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {postLists} from "../service/shoppingListService";
+import {postLists} from "../../service/shoppingListService";
 
 const ShoppingListAddForm = ({fetchLists, isEdit = false}) => {
 

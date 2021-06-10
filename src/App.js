@@ -1,10 +1,10 @@
-import Purchases from "./Purchase/Purchases";
-import Categories from "./Categoty/Categories";
+import Purchases from "./components/Purchase/Purchases";
+import Categories from "./components/Categoty/Categories";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom"
 import MyNavbar from "./MyNavbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from "react";
-import ShoppingLists from "./ShoppingList/ShoppingLists";
+import ShoppingLists from "./components/ShoppingList/ShoppingLists";
 
 class App extends Component {
     render() {

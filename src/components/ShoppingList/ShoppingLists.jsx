@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import ShoppingListAddForm from "./ShoppingListAddForm";
-import {getLists} from "../service/shoppingListService";
+import {getLists} from "../../service/shoppingListService";
 import ShoppingListRow from "./ShoppingListRow";
-import {getPurchases} from "../service/purchaseService";
-import {getCategories} from "../service/categoryService";
+import {getPurchases} from "../../service/purchaseService";
+import {getCategories} from "../../service/categoryService";
 
 const ShoppingLists = () => {
 

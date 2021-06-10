@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {deleteCategory, editCategory} from "../service/categoryService";
+import {deleteCategory, editCategory} from "../../service/categoryService";
 
 const CategoryRow = ({category, refreshCategories}) => {
 

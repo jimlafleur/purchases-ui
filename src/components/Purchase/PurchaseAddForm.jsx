@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {postPurchases} from "../service/purchaseService";
+import {postPurchases} from "../../service/purchaseService";
 
 const PurchaseAddForm = ({categories, fetchPurchases}) => {
 

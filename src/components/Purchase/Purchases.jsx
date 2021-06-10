@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import PurchaseList from "./PurchaseList";
 import PurchaseAddForm from "./PurchaseAddForm";
-import { getPurchases} from "../service/purchaseService";
-import {getCategories} from "../service/categoryService";
+import { getPurchases} from "../../service/purchaseService";
+import {getCategories} from "../../service/categoryService";
 
 const Purchases = () => {
     const [purchases, setPurchases] = useState([])

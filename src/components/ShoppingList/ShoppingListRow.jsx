@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {deleteList, editList} from "../service/shoppingListService";
+import {deleteList, editList} from "../../service/shoppingListService";
 import PurchaseList from "../Purchase/PurchaseList";
 import PurchaseAddForm from "../Purchase/PurchaseAddForm";
 

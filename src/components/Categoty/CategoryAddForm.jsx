@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {postCategories} from "../service/categoryService";
+import {postCategories} from "../../service/categoryService";
 
 const CategoryAddForm = ({fetchCategories}) => {
 

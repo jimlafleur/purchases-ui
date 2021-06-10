@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CategoryList from "./CategoryList";
 import CategoryAddForm from "./CategoryAddForm";
-import {getCategories} from "../service/categoryService";
+import {getCategories} from "../../service/categoryService";
 
 const Categories = () => {
 
