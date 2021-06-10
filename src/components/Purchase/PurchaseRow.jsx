@@ -5,16 +5,16 @@ const PurchaseRow = ({purchase}) => {
     return (
         <tr>
             <td className="col-md-1">
-                {purchase.name}
+                {purchase?.name}
             </td>
             <td className="col-md-1">
-                {purchase.count}
+                {purchase?.count}
             </td>
             <td className="col-md-1">
-                {purchase.coast}
+                {purchase?.coast}
             </td>
             <td className="col-md-1">
-                {purchase.category?.name}
+                {purchase?.category?.name}
             </td>
         </tr>
     )

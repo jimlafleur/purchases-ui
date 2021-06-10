@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {postPurchases} from "../../service/purchaseService";
 
-const PurchaseAddForm = ({categories, fetchPurchases}) => {
+const PurchaseAddForm = ({categories, listId, fetchPurchases}) => {
 
     const [name, setName] = useState('')
     const [count, setCount] = useState('')
@@ -25,9 +25,9 @@ const PurchaseAddForm = ({categories, fetchPurchases}) => {
     }
 
     const savePurchase = () => {
-        const purchase = {name, count, coast, categoryId}
-        console.log(purchase)
-        postPurchases(purchase, fetchPurchases)
+        const purchase = {name, count, coast}
+        const params = {categoryId, listId}
+        postPurchases(purchase, fetchPurchases, params)
     }
 
     return (

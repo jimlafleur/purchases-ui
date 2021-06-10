@@ -2,8 +2,8 @@ import {getRequest, postRequest} from "./abstractService";
 
 const purchasesUrl = 'purchases'
 
-export const postPurchases = (purchase, fetchPurchases) => {
-    postRequest(purchase, purchasesUrl, fetchPurchases)
+export const postPurchases = (purchase, fetchPurchases, params) => {
+    postRequest(purchase, purchasesUrl, fetchPurchases, params)
 }
 
 export const getPurchases = setPurchases => {

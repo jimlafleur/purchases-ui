@@ -3,7 +3,7 @@ import {deleteList, editList} from "../../service/shoppingListService";
 import PurchaseList from "../Purchase/PurchaseList";
 import PurchaseAddForm from "../Purchase/PurchaseAddForm";
 
-const ShoppingLists = ({list, refreshLists, categories}) => {
+const ShoppingListRow = ({list, refreshLists, categories}) => {
 
     const [isEdit, setIsEdit] = useState(false)
     const [showPurchases, setShowPurchases] = useState(false)
@@ -44,7 +44,7 @@ const ShoppingLists = ({list, refreshLists, categories}) => {
                 <div hidden={!showPurchases}>
                     <span>{getListSize()}</span>
                     <PurchaseList purchases={list.purchaseList}/>
-                    <PurchaseAddForm categories={categories}/>
+                    <PurchaseAddForm categories={categories} listId={list.id} />
                 </div>
             </td>
             <td hidden={!isEdit}>
@@ -66,4 +66,4 @@ const ShoppingLists = ({list, refreshLists, categories}) => {
     )
 }
 
-export default ShoppingLists
+export default ShoppingListRow

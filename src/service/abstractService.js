@@ -9,22 +9,22 @@ export const getRequest = (setter, url) => {
         .then(data => setter(data.data))
 }
 
-export const postRequest = (data, url, setState) => {
-    api.post(baseURL + url, data)
+export const postRequest = (object, url, refreshData, params) => {
+    api.post(baseURL + url, object, {params: params})
         .then(response => {
             console.log(response);
-            setState()
+            refreshData()
         })
         .catch(err => {
             console.log(err);
         });
 }
 
-export const deleteRequest = (id, url, setState) => {
+export const deleteRequest = (id, url, refreshData) => {
     api.delete(`${baseURL + url}/${id}`)
         .then(response => {
             console.log(response);
-            setState()
+            refreshData()
         })
         .catch(err => {
             console.log(err);

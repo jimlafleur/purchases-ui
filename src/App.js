@@ -1,4 +1,3 @@
-import Purchases from "./components/Purchase/Purchases";
 import Categories from "./components/Categoty/Categories";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom"
 import MyNavbar from "./MyNavbar";
@@ -15,9 +14,9 @@ class App extends Component {
                 <MyNavbar/>
                 <Switch>
                     <Route history={history} path='/lists' component={ShoppingLists}/>
-                    <Route history={history} path='/purchases' component={Purchases}/>
+                    <Route history={history} path='/lists/{id}' component={ShoppingLists}/>
                     <Route history={history} path='/categories' component={Categories}/>
-                    <Redirect from='/' to='/purchases'/>
+                    <Redirect from='/' to='/lists'/>
                 </Switch>
             </div>
         );
