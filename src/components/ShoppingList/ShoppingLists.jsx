@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ShoppingListAddForm from "./ShoppingListAddForm";
-import {getLists} from "../../service/shoppingListService";
+import {getAllLists} from "../../service/shoppingListService";
 import ShoppingListRow from "./ShoppingListRow";
 import {getCategories} from "../../service/categoryService";
 
@@ -10,7 +10,7 @@ const ShoppingLists = () => {
     const [categories, setCategories] = useState([])
 
     const fetchCategories = () => getCategories(setCategories)
-    const fetchLists = () => getLists(setLists)
+    const fetchLists = () => getAllLists(setLists)
 
     useEffect(fetchLists, [])
     useEffect(fetchCategories, [])
@@ -21,7 +21,8 @@ const ShoppingLists = () => {
             <div className="table-responsive">
                 <table className="table">
                     <tbody>
-                    {lists.map(list => <ShoppingListRow list={list} refreshLists={fetchLists}
+                    {lists.map(list => <ShoppingListRow list={list}
+                                                        refreshLists={fetchLists}
                                                         categories={categories}/>)}
                     </tbody>
                 </table>

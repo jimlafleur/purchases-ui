@@ -6,8 +6,12 @@ export const postLists = (list, fetchLists) => {
     postRequest(list, listsUrl, fetchLists)
 }
 
-export const getLists = setLists => {
+export const getAllLists = setLists => {
     getRequest(setLists, listsUrl)
+}
+
+export const getList = (id, setLists) => {
+    getRequest(setLists, `${listsUrl}/${id}`)
 }
 
 export const deleteList = (listId, fetchLists) => {

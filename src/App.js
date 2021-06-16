@@ -4,6 +4,7 @@ import MyNavbar from "./MyNavbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from "react";
 import ShoppingLists from "./components/ShoppingList/ShoppingLists";
+import ShoppingList from "./components/ShoppingList/ShoppingList";
 
 class App extends Component {
     render() {
@@ -13,9 +14,9 @@ class App extends Component {
             <div className="App">
                 <MyNavbar/>
                 <Switch>
-                    <Route history={history} path='/lists' component={ShoppingLists}/>
-                    <Route history={history} path='/lists/{id}' component={ShoppingLists}/>
-                    <Route history={history} path='/categories' component={Categories}/>
+                    <Route history={history} exact path='/lists' component={ShoppingLists}/>
+                    <Route history={history} exact path='/lists/:id' component={ShoppingList}/>
+                    <Route history={history} exact path='/categories' component={Categories}/>
                     <Redirect from='/' to='/lists'/>
                 </Switch>
             </div>

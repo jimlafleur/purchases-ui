@@ -1,12 +1,20 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {postPurchases} from "../../service/purchaseService";
+import {getCategories} from "../../service/categoryService";
 
-const PurchaseAddForm = ({categories, listId, fetchPurchases}) => {
+const PurchaseAddForm = ({listId, refreshList}) => {
 
     const [name, setName] = useState('')
     const [count, setCount] = useState('')
     const [coast, setCoast] = useState('')
+    const [categories, setCategories] = useState([])
     const [categoryId, setCategoryId] = useState(0)
+
+    const fetchCategories = () => getCategories(setCategories)
+
+    useEffect(fetchCategories, [])
+
+    useEffect(() => setCategoryId(categories[0]?.id), [categories])
 
     const nameChanged = event => {
         setName(event.target.value);
@@ -24,10 +32,17 @@ const PurchaseAddForm = ({categories, listId, fetchPurchases}) => {
         setCategoryId(event.target.value);
     }
 
+    const clearForm = () => {
+        setName('')
+        setCount('')
+        setCoast('')
+    }
+
     const savePurchase = () => {
         const purchase = {name, count, coast}
         const params = {categoryId, listId}
-        postPurchases(purchase, fetchPurchases, params)
+        postPurchases(purchase, refreshList, params)
+        clearForm()
     }
 
     return (

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {postLists} from "../../service/shoppingListService";
 
-const ShoppingListAddForm = ({fetchLists, isEdit = false}) => {
+const ShoppingListAddForm = ({fetchLists}) => {
 
     const [name, setName] = useState('')
 

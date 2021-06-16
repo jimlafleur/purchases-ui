@@ -1,12 +1,9 @@
 import React, {useState} from "react";
 import {deleteList, editList} from "../../service/shoppingListService";
-import PurchaseList from "../Purchase/PurchaseList";
-import PurchaseAddForm from "../Purchase/PurchaseAddForm";
 
-const ShoppingListRow = ({list, refreshLists, categories}) => {
+const ShoppingListRow = ({list, refreshLists}) => {
 
     const [isEdit, setIsEdit] = useState(false)
-    const [showPurchases, setShowPurchases] = useState(false)
     const [newName, setNewName] = useState(list.name)
 
     const edit = () => {
@@ -26,32 +23,15 @@ const ShoppingListRow = ({list, refreshLists, categories}) => {
         setNewName(event.target.value);
     }
 
-    const showPurchasesClick = () => {
-        setShowPurchases(!showPurchases)
-    }
-
-    const getListSize = () => {
-        const count = list.purchases?.size()
-        return count ? `Количество покупок: ${count}` : "Покупок нет"
-    }
-
     return (
-        <tr onDoubleClick={showPurchasesClick}>
+        <tr>
             <td hidden={isEdit}>
-                <div>
+                <a href={`http://localhost:3000/lists/${list.id}`}>
                     {list.name}
-                </div>
-                <div hidden={!showPurchases}>
-                    <span>{getListSize()}</span>
-                    <PurchaseList purchases={list.purchaseList}/>
-                    <PurchaseAddForm categories={categories} listId={list.id} />
-                </div>
+                </a>
             </td>
             <td hidden={!isEdit}>
                 <input type="text" value={newName} onChange={nameChanged} placeholder="Название"/>
-            </td>
-            <td hidden={isEdit} className="col-md-2">
-                <button onClick={showPurchasesClick}>{showPurchases ? "Скрыть покупки" : "Показать покупки"}</button>
             </td>
             <td hidden={isEdit} className="col-md-1">
                 <button onClick={edit}>Редактировать</button>

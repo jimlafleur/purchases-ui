@@ -6,7 +6,10 @@ const api = axios.create({baseURL})
 
 export const getRequest = (setter, url) => {
     api.get(url)
-        .then(data => setter(data.data))
+        .then(data => {
+            console.log(data.data)
+            setter(data.data)
+        })
 }
 
 export const postRequest = (object, url, refreshData, params) => {
@@ -21,7 +24,7 @@ export const postRequest = (object, url, refreshData, params) => {
 }
 
 export const deleteRequest = (id, url, refreshData) => {
-    api.delete(`${baseURL + url}/${id}`)
+    api.delete(`${baseURL}${url}/${id}`)
         .then(response => {
             console.log(response);
             refreshData()
@@ -32,7 +35,7 @@ export const deleteRequest = (id, url, refreshData) => {
 }
 
 export const putRequest = (object, url, refreshData) => {
-    api.put(`${baseURL + url}/${object.id}`, object)
+    api.put(`${baseURL}${url}/${object.id}`, object)
         .then(response => {
             console.log(response);
             refreshData()
