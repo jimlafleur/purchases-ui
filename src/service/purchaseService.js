@@ -1,4 +1,4 @@
-import {getRequest, postRequest} from "./abstractService";
+import {deleteRequest, getRequest, postRequest} from "./abstractService";
 
 const purchasesUrl = 'purchases'
 
@@ -11,5 +11,5 @@ export const getPurchases = setPurchases => {
 }
 
 export const deletePurchases = setPurchases => {
-    getRequest(setPurchases, purchasesUrl)
+    deleteRequest(setPurchases, purchasesUrl, setPurchases)
 }

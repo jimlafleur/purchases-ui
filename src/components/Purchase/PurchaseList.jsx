@@ -1,7 +1,7 @@
 import React from "react";
 import PurchaseRow from "./PurchaseRow";
 
-const PurchaseList = ({purchases}) => {
+const PurchaseList = ({purchases, refreshList}) => {
     console.log(purchases)
     return (
         <table className="table">
@@ -14,7 +14,7 @@ const PurchaseList = ({purchases}) => {
             </tr>
             </thead>
             <tbody>
-            {purchases?.map(purchase => <PurchaseRow purchase={purchase}/>)}
+            {purchases?.map(purchase => <PurchaseRow purchase={purchase} refreshList={refreshList}/>)}
             </tbody>
         </table>
     )
