@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {deleteList, editList} from "../../service/shoppingListService";
+import {baseClientURL} from "../../constants";
 
 const ShoppingListRow = ({list, refreshLists}) => {
 
@@ -26,7 +27,7 @@ const ShoppingListRow = ({list, refreshLists}) => {
     return (
         <tr>
             <td hidden={isEdit}>
-                <a href={`http://localhost:3000/lists/${list.id}`}>
+                <a href={`${baseClientURL}lists/${list.id}`}>
                     {list.name}
                 </a>
             </td>

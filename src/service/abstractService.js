@@ -1,8 +1,8 @@
 import axios from "axios";
+import {baseServerURL} from "../constants";
 
-const baseURL = `http://127.0.0.1:8080/`
 
-const api = axios.create({baseURL})
+const api = axios.create({baseURL: baseServerURL})
 
 export const getRequest = (setter, url) => {
     api.get(url)
@@ -13,7 +13,7 @@ export const getRequest = (setter, url) => {
 }
 
 export const postRequest = (object, url, refreshData, params) => {
-    api.post(baseURL + url, object, {params: params})
+    api.post(baseServerURL + url, object, {params: params})
         .then(response => {
             console.log(response);
             refreshData()
@@ -24,7 +24,7 @@ export const postRequest = (object, url, refreshData, params) => {
 }
 
 export const deleteRequest = (id, url, refreshData) => {
-    api.delete(`${baseURL}${url}/${id}`)
+    api.delete(`${baseServerURL}${url}/${id}`)
         .then(response => {
             console.log(response);
             refreshData()
@@ -35,7 +35,7 @@ export const deleteRequest = (id, url, refreshData) => {
 }
 
 export const putRequest = (object, url, refreshData) => {
-    api.put(`${baseURL}${url}/${object.id}`, object)
+    api.put(`${baseServerURL}${url}/${object.id}`, object)
         .then(response => {
             console.log(response);
             refreshData()
