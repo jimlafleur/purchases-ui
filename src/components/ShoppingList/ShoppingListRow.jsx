@@ -1,6 +1,12 @@
 import React, {useState} from "react";
 import {deleteList, editList} from "../../service/shoppingListService";
 import {baseClientURL} from "../../constants";
+import Fab from "@material-ui/core/Fab";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
+import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
 
 const ShoppingListRow = ({list, refreshLists}) => {
 
@@ -32,16 +38,22 @@ const ShoppingListRow = ({list, refreshLists}) => {
                 </a>
             </td>
             <td hidden={!isEdit}>
-                <input type="text" value={newName} onChange={nameChanged} placeholder="Название"/>
+                <TextField id="outlined-basic" label="Название списка" value={newName} onChange={nameChanged}/>
             </td>
             <td hidden={isEdit} className="col-md-1">
-                <button onClick={edit}>Редактировать</button>
+                <Fab color="secondary" aria-label="edit">
+                    <EditIcon onClick={edit}/>
+                </Fab>
             </td>
             <td hidden={!isEdit} className="col-md-1">
-                <button onClick={save}>Сохранить</button>
+                <Fab color="secondary" aria-label="save">
+                    <SaveIcon onClick={save}/>
+                </Fab>
             </td>
             <td className="col-md-1">
-                <button onClick={remove}>Удалить</button>
+                <IconButton aria-label="delete">
+                    <DeleteIcon onClick={remove}/>
+                </IconButton>
             </td>
         </tr>
     )

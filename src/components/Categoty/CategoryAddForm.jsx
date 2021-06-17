@@ -1,5 +1,10 @@
 import React, {useState} from "react";
 import {postCategories} from "../../service/categoryService";
+import TextField from "@material-ui/core/TextField";
+import {classes} from "istanbul-lib-coverage";
+import Tooltip from "@material-ui/core/Tooltip";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
 const CategoryAddForm = ({fetchCategories}) => {
 
@@ -22,11 +27,15 @@ const CategoryAddForm = ({fetchCategories}) => {
 
     return (
         <div className="input-group mb-3">
-            <input type="text" value={name} onChange={nameChanged} placeholder="Название"/>
-            <input type="text" value={description} onChange={descriptionChanged} placeholder="Описание"/>
-            <button type="submit" onClick={saveCategory}>
-                Добавить категорию товара
-            </button>
+            <form className={classes.root} noValidate autoComplete="off">
+                <TextField value={name} onChange={nameChanged} label="Название"  />
+                <TextField value={description} onChange={descriptionChanged} label="Описание"/>
+            </form>
+            <Tooltip title="Добавить категорию товара">
+                <Fab color="primary" aria-label="add">
+                    <AddIcon type="submit" onClick={saveCategory}/>
+                </Fab>
+            </Tooltip>
         </div>
     )
 }

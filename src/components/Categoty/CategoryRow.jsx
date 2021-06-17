@@ -1,5 +1,10 @@
 import React, {useState} from "react";
 import {deleteCategory, editCategory} from "../../service/categoryService";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Fab from "@material-ui/core/Fab";
+import SaveIcon from "@material-ui/icons/Save";
+import EditIcon from "@material-ui/icons/Edit";
 
 const CategoryRow = ({category, refreshCategories}) => {
 
@@ -43,13 +48,19 @@ const CategoryRow = ({category, refreshCategories}) => {
                 <input type="text" value={newDescription} onChange={descriptionChanged} placeholder="Описание"/>
             </td>
             <td hidden={isEdit} className="col-md-1">
-                <button onClick={edit}>Редактировать</button>
+                <Fab color="secondary" aria-label="edit">
+                    <EditIcon onClick={edit}/>
+                </Fab>
             </td>
             <td hidden={!isEdit} className="col-md-1">
-                <button onClick={save}>Сохранить</button>
+                <Fab color="secondary" aria-label="save">
+                    <SaveIcon onClick={save}/>
+                </Fab>
             </td>
             <td className="col-md-1">
-                <button onClick={remove}>Удалить</button>
+                <IconButton aria-label="delete">
+                    <DeleteIcon onClick={remove}/>
+                </IconButton>
             </td>
         </tr>
     )

@@ -1,5 +1,8 @@
 import React, {useState} from "react";
 import {postLists} from "../../service/shoppingListService";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from '@material-ui/icons/Add';
+import TextField from "@material-ui/core/TextField";
 
 const ShoppingListAddForm = ({fetchLists}) => {
 
@@ -16,12 +19,12 @@ const ShoppingListAddForm = ({fetchLists}) => {
     }
 
     return (
-        <div className="input-group mb-3">
-            <input type="text" value={name} onChange={nameChanged} placeholder="Название"/>
-            <button type="submit" onClick={saveList}>
-                Добавить список
-            </button>
-        </div>
+        <form noValidate autoComplete="off">
+            <TextField id="standard-basic" label="Создайте новый список" value={name} onChange={nameChanged}/>
+            <Fab color="primary" aria-label="add">
+                <AddIcon type="submit" onClick={saveList}/>
+            </Fab>
+        </form>
     )
 }
 

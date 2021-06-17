@@ -11,7 +11,7 @@ const PurchaseRow = ({purchase}) => {
                 {purchase?.count}
             </td>
             <td className="col-md-1">
-                {purchase?.coast}
+                {`${purchase?.coast} ₽`}
             </td>
             <td className="col-md-1">
                 {purchase?.category?.name}
