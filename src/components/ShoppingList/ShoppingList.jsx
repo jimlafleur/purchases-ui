@@ -11,9 +11,9 @@ const ShoppingList = ({match}) => {
 
     useEffect(fetchList, [match.params.id])
 
-    const listName = useMemo(()=>list.name, [list])
+    const listName = useMemo(() => list.name, [list])
 
-    const listSize = useMemo(()=>list.purchases?.length, [list])
+    const listSize = useMemo(() => list.purchaseList?.length ? `Количество покупок: ${list.purchaseList?.length}` : 'Покупок нет', [list])
 
     return (
         <div>
@@ -23,8 +23,9 @@ const ShoppingList = ({match}) => {
             <div>
                 {listSize}
             </div>
-
-            <PurchaseList purchases={list?.purchaseList}/>
+            <div hidden={list.purchaseList?.length===0}>
+                <PurchaseList purchases={list?.purchaseList}/>
+            </div>
             <PurchaseAddForm listId={list.id} refreshList={fetchList}/>
         </div>
     )
