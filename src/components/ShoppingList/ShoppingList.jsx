@@ -24,7 +24,7 @@ const ShoppingList = ({match}) => {
                 {listSize}
             </div>
             <div hidden={list.purchaseList?.length===0}>
-                <PurchaseList purchases={list?.purchaseList}/>
+                <PurchaseList purchases={list?.purchaseList} refreshList={fetchList}/>
             </div>
             <PurchaseAddForm listId={list.id} refreshList={fetchList}/>
         </div>

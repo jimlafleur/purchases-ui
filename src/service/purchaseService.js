@@ -10,6 +10,6 @@ export const getPurchases = setPurchases => {
     getRequest(setPurchases, purchasesUrl)
 }
 
-export const deletePurchases = (id, setPurchases) => {
-    deleteRequest(id, purchasesUrl, setPurchases)
+export const deletePurchases = (id, refreshData) => {
+    deleteRequest(id, purchasesUrl, refreshData)
 }
