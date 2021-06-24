@@ -1,7 +1,10 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {getList} from "../../service/shoppingListService";
 import PurchaseList from "../Purchase/PurchaseList";
-import PurchaseAddForm from "../Purchase/PurchaseAddForm";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import EditIcon from "@material-ui/icons/Edit";
+import {baseClientURL} from "../../constants";
 
 const ShoppingList = ({match}) => {
 
@@ -23,10 +26,12 @@ const ShoppingList = ({match}) => {
             <div>
                 {listSize}
             </div>
-            <div hidden={list.purchaseList?.length===0}>
+            <div hidden={list.purchaseList?.length === 0}>
                 <PurchaseList purchases={list?.purchaseList} refreshList={fetchList}/>
             </div>
-            <PurchaseAddForm listId={list.id} refreshList={fetchList}/>
+            <Fab color="primary" aria-label="add" size="big" href={`${baseClientURL}lists/${list.id}/edit`}>
+                {list.purchaseList?.length === 0 ? <AddIcon/> : <EditIcon/>}
+            </Fab>
         </div>
     )
 }

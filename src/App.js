@@ -6,6 +6,8 @@ import React, {Component} from "react";
 import ShoppingLists from "./components/ShoppingList/ShoppingLists";
 import ShoppingList from "./components/ShoppingList/ShoppingList";
 import Container from "@material-ui/core/Container";
+import InitForm from "./Init/InitForm";
+import EditList from "./components/ShoppingList/EditList";
 
 class App extends Component {
     render() {
@@ -20,10 +22,13 @@ class App extends Component {
                             <Route history={history} exact path='/lists' component={ShoppingLists}/>
                             <Route history={history} exact path='/lists/:id' component={ShoppingList}/>
                             <Route history={history} exact path='/categories' component={Categories}/>
+                            <Route history={history} exact path='/lists/:id/edit' component={EditList}/>
+                            <Route history={history} exact path='/init' component={InitForm}/>
                             <Redirect from='/' to='/lists'/>
                         </Switch>
                     </Container>
                 </Container>
+
             </div>
         );
     }
