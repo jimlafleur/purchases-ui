@@ -1,11 +1,11 @@
 import React from "react";
-import ProductList from "../Product/ProductList";
+import GoodsList from "../Goods/GoodsList";
 
 
 const EditList = ({match}) => {
 
     return (
-        <ProductList listId={match.params.id}/>
+        <GoodsList listId={match.params.id}/>
     )
 }
 

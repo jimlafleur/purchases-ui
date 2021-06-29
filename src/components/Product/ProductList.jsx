@@ -1,28 +1,33 @@
 import React, {useEffect, useState} from "react";
-import TableContainer from "@material-ui/core/TableContainer";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import {classes} from "istanbul-lib-coverage";
-import TableBody from "@material-ui/core/TableBody";
+import ProductAddForm from "./ProductAddForm";
 import ProductRow from "./ProductRow";
+import {getCategories} from "../../service/categoryService";
 import {getProducts} from "../../service/productService";
 
-const ProductList = ({listId}) => {
+
+const ProductList = () => {
 
     const [products, setProducts] = useState([])
+    const [categories, setCategories] = useState([])
 
-    const fetchProducts = () => getProducts(listId, setProducts)
+    const fetchCategories = () => getCategories(setCategories)
+    const fetchProducts = () => getProducts(setProducts)
 
-    useEffect(fetchProducts, [listId])
+    useEffect(fetchCategories, [])
+    useEffect(fetchProducts, [])
+
 
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableBody>
-                    {products.map(product => <ProductRow product={product} listId={listId} refreshList={fetchProducts}/>)}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <div className="container-fluid">
+            <ProductAddForm refreshProducts={fetchProducts} categories={categories}/>
+            <div className="table-responsive">
+                <table className="table">
+                    <tbody>
+                    {products.map(product => <ProductRow product={product}/>)}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     )
 }
 
