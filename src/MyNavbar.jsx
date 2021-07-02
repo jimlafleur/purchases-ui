@@ -23,6 +23,9 @@ const MyNavbar = () => {
                         <li className="nav-item">
                             <a className="nav-link" href={`${baseClientURL}products`}>Продукты</a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href={`${baseClientURL}init`}>Инициализация данных</a>
+                        </li>
                     </ul>
                 </div>
             </div>
