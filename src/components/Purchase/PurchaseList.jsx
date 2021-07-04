@@ -2,7 +2,7 @@ import React from "react";
 import PurchaseRow from "./PurchaseRow";
 
 const PurchaseList = ({purchases, refreshList}) => {
-    console.log(purchases)
+
     return (
         <table className="table">
             <thead>

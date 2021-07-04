@@ -6,6 +6,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import {postProduct} from "../../service/productService";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import {isBlank} from "../../service/utils";
 
 const ProductAddForm = ({refreshProducts, categories}) => {
 
@@ -20,13 +21,15 @@ const ProductAddForm = ({refreshProducts, categories}) => {
         setCategoryId(event.target.value);
     }
 
-    useEffect(()=>{setCategoryId(categories[0]?.id)},[categories])
+    useEffect(() => {
+        setCategoryId(categories[0]?.id)
+    }, [categories])
 
     const saveProduct = () => {
         const product = {name}
         const params = {categoryId}
-
-        postProduct(product, refreshProducts, params)
+        if (!isBlank(name))
+            postProduct(product, refreshProducts, params)
     }
 
     return (
