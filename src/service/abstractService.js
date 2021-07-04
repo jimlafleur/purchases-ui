@@ -44,6 +44,7 @@ export const deleteRequest = (id, url, refreshData) => {
 }
 
 export const putRequest = (object, url, refreshData) => {
+    console.log(object)
     api.put(`${baseServerURL}${url}/${object.id}`, object)
         .then(response => {
             console.log(response);
