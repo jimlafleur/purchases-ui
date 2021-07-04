@@ -57,7 +57,7 @@ const CategoryRow = ({category, refreshCategories}) => {
                     <SaveIcon onClick={save}/>
                 </Fab>
             </td>
-            <td className="col-md-1">
+            <td className="col-md-1" hidden>
                 <IconButton aria-label="delete">
                     <DeleteIcon onClick={remove}/>
                 </IconButton>
