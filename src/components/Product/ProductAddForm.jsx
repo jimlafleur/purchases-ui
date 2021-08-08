@@ -7,6 +7,10 @@ import AddIcon from "@material-ui/icons/Add";
 import {postProduct} from "../../service/productService";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import {isBlank} from "../../service/utils";
+import TabPanel from "@material-ui/lab/TabPanel";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 const ProductAddForm = ({refreshProducts, categories}) => {
 

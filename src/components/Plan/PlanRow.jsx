@@ -1,17 +1,17 @@
 import React from "react";
 
-const ProductRow = ({product}) => {
+const CategoryRow = ({plan}) => {
 
     return (
         <tr>
             <td className="col-md-1">
-                {product.name}
+                {plan.name}
             </td>
             <td className="col-md-1">
-                {product.categoryName}
+                {plan.date}
             </td>
         </tr>
     )
 }
 
-export default ProductRow
+export default CategoryRow

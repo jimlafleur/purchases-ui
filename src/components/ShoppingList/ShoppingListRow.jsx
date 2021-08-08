@@ -1,61 +1,67 @@
 import React, {useState} from "react";
-import {deleteList, editList} from "../../service/shoppingListService";
 import {baseClientURL} from "../../constants";
 import Fab from "@material-ui/core/Fab";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import SaveIcon from '@material-ui/icons/Save';
-import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
+import EditListDialog from "./EditListDialog";
+import Tooltip from "@material-ui/core/Tooltip";
+import DeleteListDialog from "./DeleteListDialog";
 
 const ShoppingListRow = ({list, refreshLists}) => {
 
     const [isEdit, setIsEdit] = useState(false)
-    const [newName, setNewName] = useState(list.name)
+    const [isDelete, setIsDelete] = useState(false);
 
-    const edit = () => {
-        setIsEdit(true)
+    const openDeleteDialog = () => {
+        setIsDelete(true);
     }
 
-    const save = () => {
-        editList({name: newName, id: list.id}, refreshLists)
-        setIsEdit(false)
+    const closeDeleteDialog = () => {
+        setIsDelete(false);
     }
 
-    const remove = () => {
-        deleteList(list.id, refreshLists)
+    const openEditDialog = () => {
+        setIsEdit(true);
     }
 
-    const nameChanged = event => {
-        setNewName(event.target.value);
+    const closeEditDialog = () => {
+        setIsEdit(false);
     }
 
     return (
-        <tr>
-            <td hidden={isEdit}>
-                <a href={`${baseClientURL}lists/${list.id}`}>
-                    {list.name}
-                </a>
-            </td>
-            <td hidden={!isEdit}>
-                <TextField id="outlined-basic" label="Название списка" value={newName} onChange={nameChanged}/>
-            </td>
-            <td hidden={isEdit} className="col-md-1">
-                <Fab color="secondary" aria-label="edit">
-                    <EditIcon onClick={edit}/>
-                </Fab>
-            </td>
-            <td hidden={!isEdit} className="col-md-1">
-                <Fab color="secondary" aria-label="save">
-                    <SaveIcon onClick={save}/>
-                </Fab>
-            </td>
-            <td className="col-md-1">
-                <IconButton aria-label="delete">
-                    <DeleteIcon onClick={remove}/>
-                </IconButton>
-            </td>
-        </tr>
+        <div>
+            <EditListDialog list={list}
+                            refreshLists={refreshLists}
+                            isOpen={isEdit}
+                            closeDialog={closeEditDialog}/>
+            <DeleteListDialog list={list}
+                              refreshLists={refreshLists}
+                              isOpen={isDelete}
+                              closeDialog={closeDeleteDialog}/>
+            <tr>
+                <td>
+                    <a href={`${baseClientURL}lists/${list.id}`}>
+                        {list.name}
+                    </a>
+                </td>
+                <td>
+                    <Tooltip title="Переименовать список">
+                        <Fab color="secondary" aria-label="edit">
+                            <EditIcon onClick={openEditDialog}/>
+                        </Fab>
+                    </Tooltip>
+
+                </td>
+                <td>
+                    <Tooltip title="Удалить список">
+                        <IconButton aria-label="delete">
+                            <DeleteIcon onClick={openDeleteDialog}/>
+                        </IconButton>
+                    </Tooltip>
+                </td>
+            </tr>
+        </div>
     )
 }
 

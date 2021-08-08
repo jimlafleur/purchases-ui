@@ -5,6 +5,7 @@ import {classes} from "istanbul-lib-coverage";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import DeleteIcon from "@material-ui/icons/Delete";
 import {isBlank} from "../../service/utils";
 
 const CategoryAddForm = ({fetchCategories}) => {

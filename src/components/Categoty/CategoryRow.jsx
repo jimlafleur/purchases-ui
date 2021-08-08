@@ -1,68 +1,69 @@
 import React, {useState} from "react";
-import {deleteCategory, editCategory} from "../../service/categoryService";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Fab from "@material-ui/core/Fab";
-import SaveIcon from "@material-ui/icons/Save";
 import EditIcon from "@material-ui/icons/Edit";
+import DeleteCategoryDialog from "./DeleteCategoryDialog";
+import Tooltip from "@material-ui/core/Tooltip";
+import EditCategoryDialog from "./EditCategoryDialog";
 
 const CategoryRow = ({category, refreshCategories}) => {
 
     const [isEdit, setIsEdit] = useState(false)
-    const [newName, setNewName] = useState(category.name)
-    const [newDescription, setNewDescription] = useState(category.description)
+    const [isDelete, setIsDelete] = useState(false);
 
-    const edit = () => {
-        setIsEdit(true)
+    const openDeleteDialog = () => {
+        setIsDelete(true);
     }
 
-    const save = () => {
-        editCategory({name: newName, description: newDescription, id: category.id}, refreshCategories)
-        setIsEdit(false)
+    const closeDeleteDialog = () => {
+        setIsDelete(false);
     }
 
-    const remove = () => {
-        deleteCategory(category.id, refreshCategories)
+    const openEditDialog = () => {
+        setIsEdit(true);
     }
 
-    const nameChanged = event => {
-        setNewName(event.target.value);
+    const closeEditDialog = () => {
+        setIsEdit(false);
     }
 
-    const descriptionChanged = event => {
-        setNewDescription(event.target.value);
-    }
 
     return (
-        <tr>
-            <td hidden={isEdit} className="col-md-1">
-                {category.name}
-            </td>
-            <td hidden={!isEdit} className="col-md-1">
-                <input type="text" value={newName} onChange={nameChanged} placeholder="Название"/>
-            </td>
-            <td hidden={isEdit}>
-                {category.description}
-            </td>
-            <td hidden={!isEdit}>
-                <input type="text" value={newDescription} onChange={descriptionChanged} placeholder="Описание"/>
-            </td>
-            <td hidden={isEdit} className="col-md-1">
-                <Fab color="secondary" aria-label="edit">
-                    <EditIcon onClick={edit}/>
-                </Fab>
-            </td>
-            <td hidden={!isEdit} className="col-md-1">
-                <Fab color="secondary" aria-label="save">
-                    <SaveIcon onClick={save}/>
-                </Fab>
-            </td>
-            <td className="col-md-1" hidden>
-                <IconButton aria-label="delete">
-                    <DeleteIcon onClick={remove}/>
-                </IconButton>
-            </td>
-        </tr>
+        <div>
+            <DeleteCategoryDialog category={category}
+                                  refreshCategories={refreshCategories}
+                                  isOpen={isDelete}
+                                  closeDialog={closeDeleteDialog}/>
+            <EditCategoryDialog category={category}
+                                refreshCategories={refreshCategories}
+                                isOpen={isEdit}
+                                closeDialog={closeEditDialog}/>
+            <tr>
+                <td>
+                    {category.name}
+                </td>
+                <td>
+                    {category.description}
+                </td>
+
+                <td>
+                    <Tooltip title="Редактировать категорию товара">
+                        <Fab color="secondary" aria-label="edit">
+                            <EditIcon onClick={openEditDialog}/>
+                        </Fab>
+                    </Tooltip>
+
+                </td>
+                <td>
+                    <Tooltip title="Удалить категорию товара">
+                        <IconButton aria-label="delete">
+                            <DeleteIcon onClick={openDeleteDialog}/>
+                        </IconButton>
+                    </Tooltip>
+                </td>
+            </tr>
+        </div>
     )
 }
 
