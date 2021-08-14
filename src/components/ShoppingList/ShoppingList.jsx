@@ -1,11 +1,10 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {getList} from "../../service/shoppingListService";
-import PurchaseList from "../Purchase/PurchaseList";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import {baseClientURL} from "../../constants";
-import PlanForm from "./PlanForm";
+import ShoppingListTable from "./ShoppingListTable";
 
 const ShoppingList = ({match}) => {
 
@@ -27,26 +26,15 @@ const ShoppingList = ({match}) => {
             <div>
                 {listSize}
             </div>
-
-            <table className="table">
-                <tbody>
-
-                <td className="col-md-3">
-                    <div>
-                        <div hidden={list.purchaseList?.length === 0}>
-                            <PurchaseList purchases={list?.purchaseList} refreshList={fetchList}/>
-                        </div>
-                        <Fab color="primary" aria-label="add" size="big" href={`${baseClientURL}lists/${list.id}/edit`}>
-                            {list.purchaseList?.length === 0 ? <AddIcon/> : <EditIcon/>}
-                        </Fab>
-                    </div>
-                </td>
-                <td className="col-md-1">
-                    <PlanForm list={list}/>
-                </td>
-                </tbody>
-            </table>
-
+            <div>
+                <div hidden={list.purchaseList?.length === 0}>
+                    {/*<PurchaseList purchases={list?.purchaseList} refreshList={fetchList}/>*/}
+                    <ShoppingListTable rows={list?.purchaseList}/>
+                </div>
+                <Fab color="primary" aria-label="add" size="big" href={`${baseClientURL}lists/${list.id}/edit`}>
+                    {list.purchaseList?.length === 0 ? <AddIcon/> : <EditIcon/>}
+                </Fab>
+            </div>
         </div>
     )
 }

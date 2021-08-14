@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryRow = ({plan}) => {
+const PlanRow = ({plan}) => {
 
     return (
         <tr>
@@ -14,4 +14,4 @@ const CategoryRow = ({plan}) => {
     )
 }
 
-export default CategoryRow
+export default PlanRow

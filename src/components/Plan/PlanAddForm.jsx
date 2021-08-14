@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import SinglePlanAddForm from "./SinglePlanAddForm";
 import WeeklyPlanAddForm from "./WeeklyPlanAddForm";
 import PeriodicPlanAddForm from "./PeriodicPlanAddForm";
+import {getAllLists} from "../../service/shoppingListService";
 
 function TabPanel(props) {
     const {children, value, index} = props;
@@ -29,9 +30,13 @@ TabPanel.propTypes = {
 };
 
 
-const PlanAddForm = () => {
-    const [value, setValue] = React.useState(0);
+const PlanAddForm = ({closeDialog, refreshPlans}) => {
+    const [value, setValue] = useState(0);
+    const [lists, setLists] = useState([])
 
+    const fetchLists = () => getAllLists(setLists)
+
+    useEffect(fetchLists, [])
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -44,7 +49,7 @@ const PlanAddForm = () => {
                 <Tab label="Периодичный план"/>
             </Tabs>
             <TabPanel value={value} index={0}>
-                <SinglePlanAddForm/>
+                <SinglePlanAddForm lists={lists} closeDialog={closeDialog} refreshPlans={refreshPlans}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <WeeklyPlanAddForm/>

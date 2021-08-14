@@ -6,7 +6,7 @@ export const getPlans = refreshPlans => {
     getRequest(refreshPlans, plansUrl)
 }
 
-export const postPlans = (plan, refreshPlans, params) => {
+export const postPlan = (plan, refreshPlans, params) => {
     postRequest(plan, plansUrl, refreshPlans, params)
 }
 
