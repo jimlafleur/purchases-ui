@@ -5,8 +5,7 @@ import {classes} from "istanbul-lib-coverage";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import DeleteIcon from "@material-ui/icons/Delete";
-import {isBlank} from "../../service/utils";
+import {isBlank} from "../../utils/utils";
 
 const CategoryAddForm = ({fetchCategories}) => {
 
@@ -23,7 +22,7 @@ const CategoryAddForm = ({fetchCategories}) => {
 
     const saveCategory = () => {
         const category = {name, description}
-        if (!isBlank(name)) {
+        if (!isBlank(name) && !isBlank(description)) {
             postCategories(category, fetchCategories)
         }
         setName('')

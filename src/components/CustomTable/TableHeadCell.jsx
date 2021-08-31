@@ -1,8 +1,11 @@
 import TableCell from "@material-ui/core/TableCell";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import React from "react";
+import {useTableStyles} from "./constants";
 
-const TableHeadCell = ({headCell, order, orderBy, classes, onRequestSort}) => {
+const TableHeadCell = ({headCell, order, orderBy, onRequestSort}) => {
+
+    const classes = useTableStyles()
 
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);

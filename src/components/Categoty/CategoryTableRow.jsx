@@ -1,37 +1,42 @@
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import Checkbox from "@material-ui/core/Checkbox";
 import React from "react";
+import Tooltip from "@material-ui/core/Tooltip";
+import EditIcon from "@material-ui/icons/Edit";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
+const CategoryTableRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {
 
-const CategoryTableRow = ({row, index, selected, handleClick}) => {
+    const openEditDialog = () => {
+        setCurrentRow(row)
+        setIsEdit(true);
+    }
 
-    const isSelected = (name) => selected.indexOf(name) !== -1;
-
-    const isItemSelected = isSelected(row.name);
-
-    const labelId = `enhanced-table-checkbox-${index}`;
+    const openDeleteDialog = () => {
+        setCurrentRow(row)
+        setIsDelete(true);
+    }
 
     return (
-        <TableRow
-            hover
-            onClick={(event) => handleClick(event, row.name)}
-            role="checkbox"
-            aria-checked={isItemSelected}
-            tabIndex={-1}
-            key={row.name}
-            selected={isItemSelected}
-        >
-            <TableCell padding="checkbox">
-                <Checkbox
-                    checked={isItemSelected}
-                    inputProps={{'aria-labelledby': labelId}}
-                />
-            </TableCell>
+        <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+            <TableCell padding="checkbox"/>
             <TableCell>
                 {row.name}
             </TableCell>
             <TableCell>{row.description}</TableCell>
+            <TableCell padding="checkbox">
+                <Tooltip title="Редактировать категорию товара">
+                    <EditIcon onClick={openEditDialog}/>
+                </Tooltip>
+            </TableCell>
+            <TableCell padding="checkbox">
+                <Tooltip title="Удалить категорию товара">
+                    <IconButton aria-label="delete">
+                        <DeleteIcon onClick={openDeleteDialog}/>
+                    </IconButton>
+                </Tooltip>
+            </TableCell>
         </TableRow>
     );
 }

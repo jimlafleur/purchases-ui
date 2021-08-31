@@ -7,10 +7,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 
-const DeleteCategoryDialog = ({category, refreshCategories, isOpen, closeDialog}) => {
+const DeleteCategoryDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
 
     const remove = () => {
-        deleteCategory(category.id, refreshCategories)
+        deleteCategory(currentRow.id, refreshData)
         closeDialog()
     }
 
@@ -19,7 +19,7 @@ const DeleteCategoryDialog = ({category, refreshCategories, isOpen, closeDialog}
             <DialogTitle>Удаление категории товара</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Вы действительно хотите удалить категорию товара '{category.name}'? Данное действие также удалит все
+                    Вы действительно хотите удалить категорию товара '{currentRow.name}'? Данное действие также удалит все
                     продукты и покупки, связанные с этой категорией
                 </DialogContentText>
             </DialogContent>

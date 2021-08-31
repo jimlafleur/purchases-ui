@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {editCategory} from "../../service/categoryService";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -10,9 +10,15 @@ import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
 import TextField from "@material-ui/core/TextField";
 
-const EditCategoryDialog = ({category, refreshCategories, isOpen, closeDialog}) => {
-    const [name, setName] = useState(category.name)
-    const [description, setDescription] = useState(category.description)
+const EditCategoryDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
+    const [name, setName] = useState(currentRow.name)
+    const [description, setDescription] = useState(currentRow.description)
+
+    useEffect(() => {
+        setName(currentRow.name)
+        setDescription(currentRow.description)
+    }, [currentRow])
+
 
     const nameChanged = event => {
         setName(event.target.value);
@@ -23,9 +29,10 @@ const EditCategoryDialog = ({category, refreshCategories, isOpen, closeDialog}) 
     }
 
     const save = () => {
-        editCategory({name, description, id: category.id}, refreshCategories)
+        editCategory({name, description, id: currentRow.id}, refreshData)
         closeDialog()
     }
+
     return (
         <Dialog open={isOpen} onClose={closeDialog}>
             <DialogTitle>Редактирование категории товара</DialogTitle>

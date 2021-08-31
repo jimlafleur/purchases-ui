@@ -3,7 +3,7 @@ import {postLists} from "../../service/shoppingListService";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from '@material-ui/icons/Add';
 import TextField from "@material-ui/core/TextField";
-import {isBlank} from "../../service/utils";
+import {isBlank} from "../../utils/utils";
 
 const ShoppingListAddForm = ({fetchLists}) => {
 

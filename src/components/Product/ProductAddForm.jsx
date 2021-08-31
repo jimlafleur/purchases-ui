@@ -6,7 +6,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import {postProduct} from "../../service/productService";
 import NativeSelect from "@material-ui/core/NativeSelect";
-import {isBlank} from "../../service/utils";
+import {isBlank} from "../../utils/utils";
 import TabPanel from "@material-ui/lab/TabPanel";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";

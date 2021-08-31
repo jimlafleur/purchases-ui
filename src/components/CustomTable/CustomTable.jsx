@@ -4,71 +4,55 @@ import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import {getComparator, stableSort} from "../../utils/tableUtils";
+import CustomTableToolbar from "./CustomTableToolbar";
+import CustomTableHead from "./CustomTableHead";
 
-const CustomTable = ({rows, createDate}) => {
+const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittle, deleteDialog, deleteRequest}) => {
 
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('calories');
-    const [selected, setSelected] = useState([]);
+    const [currentRow, setCurrentRow] = useState({});
 
+    const [isEdit, setIsEdit] = useState(false)
+    const [isDelete, setIsDelete] = useState(false);
+
+    const closeDeleteDialog = () => {
+        setIsDelete(false);
+    }
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
 
-    const handleSelectAllClick = (event) => {
-        if (event.target.checked) {
-            const newSelecteds = rows.map(row => row.id);
-            setSelected(newSelecteds);
-            return;
-        }
-        setSelected([]);
-    };
-
-    const handleClick = (event, name) => {
-        const selectedIndex = selected.indexOf(name);
-        let newSelected = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-
-        setSelected(newSelected);
-    };
-
+    const closeDialog = () => {
+        setIsEdit(false);
+    }
 
     return (
-        <div >
-            <Paper >
-                <CategoryTableToolbar numSelected={selected.length}/>
+        <div>
+            {editDialog({currentRow, refreshData, closeDialog, isOpen: isEdit})}
+            {deleteDialog({currentRow, refreshData, isOpen: isDelete, closeDialog: closeDeleteDialog})}
+
+            <Paper>
+                <CustomTableToolbar tittle={tittle} count={rows.length}/>
                 <TableContainer>
                     <Table>
-                        <CategoryTableHead
-                            cells={CategoryHeadCells}
-                            classes={classes}
-                            numSelected={selected.length}
+                        <CustomTableHead
+                            cells={headCells}
                             order={order}
                             orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
                             rowCount={rows.length}
                         />
                         <TableBody>
                             {stableSort(rows, getComparator(order, orderBy))
-                                .map((row, index) => <CategoryTableRow row={row}
-                                                                       index={index}
-                                                                       selected={selected}
-                                                                       handleClick={handleClick}/>)}
+                                .map(row => createRow({
+                                    row,
+                                    setIsEdit,
+                                    setIsDelete,
+                                    setCurrentRow
+                                }))}
                         </TableBody>
                     </Table>
                 </TableContainer>
