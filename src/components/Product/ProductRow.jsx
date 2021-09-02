@@ -1,16 +1,18 @@
 import React from "react";
+import CustomRow from "../CustomTable/CustomRow";
+import ProductCells from "./ProductCells";
+import {PRODUCT_DELETE_DIALOG_TOOLTIP, PRODUCT_EDIT_DIALOG_TOOLTIP} from "./constants";
 
-const ProductRow = ({product}) => {
+const ProductRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {
 
     return (
-        <tr>
-            <td className="col-md-1">
-                {product.name}
-            </td>
-            <td className="col-md-1">
-                {product.categoryName}
-            </td>
-        </tr>
+        <CustomRow cells={ProductCells}
+                   deleteTooltip={PRODUCT_DELETE_DIALOG_TOOLTIP}
+                   editTooltip={PRODUCT_EDIT_DIALOG_TOOLTIP}
+                   row={row}
+                   setCurrentRow={setCurrentRow}
+                   setIsDelete={setIsDelete}
+                   setIsEdit={setIsEdit}/>
     )
 }
 

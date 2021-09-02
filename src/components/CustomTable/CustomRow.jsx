@@ -6,7 +6,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const CategoryTableRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {
+const CustomRow = ({row, setIsEdit, setIsDelete, setCurrentRow, cells, editTooltip, deleteTooltip}) => {
 
     const openEditDialog = () => {
         setCurrentRow(row)
@@ -21,17 +21,14 @@ const CategoryTableRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {
     return (
         <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
             <TableCell padding="checkbox"/>
-            <TableCell>
-                {row.name}
-            </TableCell>
-            <TableCell>{row.description}</TableCell>
+            {cells(row)}
             <TableCell padding="checkbox">
-                <Tooltip title="Редактировать категорию товара">
+                <Tooltip title={editTooltip}>
                     <EditIcon onClick={openEditDialog}/>
                 </Tooltip>
             </TableCell>
             <TableCell padding="checkbox">
-                <Tooltip title="Удалить категорию товара">
+                <Tooltip title={deleteTooltip}>
                     <IconButton aria-label="delete">
                         <DeleteIcon onClick={openDeleteDialog}/>
                     </IconButton>
@@ -41,4 +38,4 @@ const CategoryTableRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {
     );
 }
 
-export default CategoryTableRow
+export default CustomRow

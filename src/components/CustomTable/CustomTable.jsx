@@ -6,8 +6,13 @@ import Paper from '@material-ui/core/Paper';
 import {getComparator, stableSort} from "../../utils/tableUtils";
 import CustomTableToolbar from "./CustomTableToolbar";
 import CustomTableHead from "./CustomTableHead";
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
 
-const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittle, deleteDialog, deleteRequest}) => {
+const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittle, deleteDialog}) => {
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [page, setPage] = React.useState(0);
 
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('calories');
@@ -16,22 +21,38 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
     const [isEdit, setIsEdit] = useState(false)
     const [isDelete, setIsDelete] = useState(false);
 
-    const closeDeleteDialog = () => {
-        setIsDelete(false);
-    }
+
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
 
-    const closeDialog = () => {
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        console.log(event.target.value)
+
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+    const closeEditDialog = () => {
         setIsEdit(false);
     }
 
+    const closeDeleteDialog = () => {
+        setIsDelete(false);
+    }
+
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
+
     return (
         <div>
-            {editDialog({currentRow, refreshData, closeDialog, isOpen: isEdit})}
+            {editDialog({currentRow, refreshData, isOpen: isEdit, closeDialog: closeEditDialog})}
             {deleteDialog({currentRow, refreshData, isOpen: isDelete, closeDialog: closeDeleteDialog})}
 
             <Paper>
@@ -43,19 +64,28 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
-                            rowCount={rows.length}
-                        />
+                            rowCount={rows.length}/>
                         <TableBody>
                             {stableSort(rows, getComparator(order, orderBy))
-                                .map(row => createRow({
-                                    row,
-                                    setIsEdit,
-                                    setIsDelete,
-                                    setCurrentRow
-                                }))}
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map(row => createRow({row, setIsEdit, setIsDelete, setCurrentRow}))}
+                            {emptyRows > 0 && (
+                                <TableRow style={{height:  53 * emptyRows}}>
+                                    <TableCell colSpan={6}/>
+                                </TableRow>
+                            )}
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                />
             </Paper>
         </div>
     );

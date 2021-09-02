@@ -3,6 +3,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import React from "react";
 import TableHeadCell from "./TableHeadCell";
+import PropTypes from "prop-types";
 
 const CustomTableHead = ({cells, order, orderBy, onRequestSort}) => {
 
@@ -23,3 +24,9 @@ const CustomTableHead = ({cells, order, orderBy, onRequestSort}) => {
 }
 
 export default CustomTableHead
+
+CustomTableHead.propTypes = {
+    onRequestSort: PropTypes.func.isRequired,
+    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+    orderBy: PropTypes.string.isRequired,
+};

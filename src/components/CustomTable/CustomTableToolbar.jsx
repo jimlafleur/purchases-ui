@@ -18,8 +18,4 @@ const CustomTableToolbar = ({tittle, count}) => {
     );
 };
 
-CustomTableToolbar.propTypes = {
-    numSelected: PropTypes.number.isRequired,
-};
-
 export default CustomTableToolbar

@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
 import ProductAddForm from "./ProductAddForm";
-import ProductRow from "./ProductRow";
 import {getCategories} from "../../service/categoryService";
 import {getProducts} from "../../service/productService";
+import ProductTable from "./ProductTable";
 
-
-const ProductList = () => {
+const Products = () => {
 
     const [products, setProducts] = useState([])
     const [categories, setCategories] = useState([])
@@ -20,15 +19,9 @@ const ProductList = () => {
     return (
         <div className="container-fluid">
             <ProductAddForm refreshProducts={fetchProducts} categories={categories}/>
-            <div className="table-responsive">
-                <table className="table">
-                    <tbody>
-                    {products.map(product => <ProductRow product={product}/>)}
-                    </tbody>
-                </table>
-            </div>
+            <ProductTable refreshData={fetchProducts} rows={products}/>
         </div>
     )
 }
 
-export default ProductList
+export default Products
