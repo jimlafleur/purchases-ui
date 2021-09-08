@@ -19,7 +19,7 @@ const CustomRow = ({row, setIsEdit, setIsDelete, setCurrentRow, cells, editToolt
     }
 
     return (
-        <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+        <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onDoubleClick={openEditDialog}>
             <TableCell padding="checkbox"/>
             {cells(row)}
             <TableCell padding="checkbox">

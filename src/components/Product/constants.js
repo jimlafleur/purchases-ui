@@ -10,4 +10,6 @@ export const getDeleteMessage = name => `Вы действительно хот�
 export const PRODUCT_EDIT_DIALOG_TOOLTIP = "Редактировать продукт"
 export const PRODUCT_DELETE_DIALOG_TOOLTIP = "Удалить продукт"
 export const PRODUCT_DELETE_DIALOG_TITTLE = "Удаление продукта"
+export const PRODUCT_EDIT_DIALOG_TITTLE = "Редактирование продукта"
+export const PRODUCT_SAVE_TOOLTIP = "Сохранить продукт"
 

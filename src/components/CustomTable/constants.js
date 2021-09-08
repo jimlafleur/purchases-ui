@@ -43,3 +43,12 @@ export const useTableStyles = makeStyles((theme) => ({
         width: 1,
     },
 }));
+
+export const useAddFormStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+    },
+}));

@@ -1,13 +1,15 @@
 import React, {useState} from "react";
-import {postCategories} from "../../service/categoryService";
-import TextField from "@material-ui/core/TextField";
-import {classes} from "istanbul-lib-coverage";
+import {postCategory} from "../../service/categoryService";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import {isBlank} from "../../utils/utils";
+import {validateCategory} from "./constants";
+import CategoryFields from "./CategoryFields";
+import {useAddFormStyles} from "../CustomTable/constants";
 
 const CategoryAddForm = ({fetchCategories}) => {
+
+    const classes = useAddFormStyles();
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -22,18 +24,17 @@ const CategoryAddForm = ({fetchCategories}) => {
 
     const saveCategory = () => {
         const category = {name, description}
-        if (!isBlank(name) && !isBlank(description)) {
-            postCategories(category, fetchCategories)
+        if (validateCategory(category)) {
+            postCategory(category, fetchCategories)
+            setName('')
+            setDescription('')
         }
-        setName('')
-        setDescription('')
     }
 
     return (
         <div className="input-group mb-3">
             <form className={classes.root} noValidate autoComplete="off">
-                <TextField value={name} onChange={nameChanged} label="Название"/>
-                <TextField value={description} onChange={descriptionChanged} label="Описание"/>
+                <CategoryFields states={{name, description}} actions={{nameChanged, descriptionChanged}}/>
             </form>
             <Tooltip title="Добавить категорию товара">
                 <Fab color="primary" aria-label="add">

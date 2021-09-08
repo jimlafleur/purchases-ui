@@ -1,4 +1,4 @@
-import {deleteRequest, getRequest, postRequest} from "./abstractService";
+import {deleteRequest, getRequest, postRequest, putRequest} from "./abstractService";
 
 const productsUrl = 'products'
 
@@ -12,4 +12,8 @@ export const postProduct = (product, refreshProducts, params) => {
 
 export const deleteProduct = (productId, refreshProducts) => {
     deleteRequest(productId, productsUrl, refreshProducts)
+}
+
+export const editProduct = (product, refreshProducts, params) => {
+    putRequest(product, productsUrl, refreshProducts, params)
 }

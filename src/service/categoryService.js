@@ -6,7 +6,7 @@ export const getCategories = refreshCategories => {
     getRequest(refreshCategories, categoriesUrl)
 }
 
-export const postCategories = (category, refreshCategories) => {
+export const postCategory = (category, refreshCategories) => {
     postRequest(category, categoriesUrl, refreshCategories)
 }
 
