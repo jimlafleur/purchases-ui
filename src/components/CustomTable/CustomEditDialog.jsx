@@ -9,20 +9,20 @@ import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
 import {useAddFormStyles} from "./constants";
 
-const CustomEditDialog = ({states, actions, validate, resetForm, refreshData, isOpen, closeDialog, saveMethod, getObject, fields, tittle, saveTooltip}) => {
+const CustomEditDialog = ({states, actions, validate, resetForm, refreshData, isOpen, closeDialog, saveMethod, getObject, fields, tittle, saveTooltip, setters, currentRow}) => {
     const classes = useAddFormStyles();
 
     const save = () => {
-        const newObject = getObject()
-        if (validate(newObject)) {
-            saveMethod(newObject, refreshData)
+        const {object, params} = getObject(states, currentRow)
+        if (validate(object, params)) {
+            saveMethod(object, refreshData, params)
             closeDialog()
         }
     }
 
     const cancel = () => {
         closeDialog()
-        resetForm()
+        resetForm(setters, currentRow)
     }
 
     return (

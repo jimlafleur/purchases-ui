@@ -1,9 +1,9 @@
 import React from 'react';
 import CustomTable from "../CustomTable/CustomTable";
-import {PRODUCT_TITTLE, ProductHeadCells} from "./constants";
+import {PRODUCT_TITTLE, ProductHeadCells} from "./productConstants";
 import ProductRow from "./ProductRow";
-import ProductEditDialog from "./ProductEditDialog";
 import ProductDeleteDialog from "./ProductDeleteDialog";
+import ProductEditDialog from "./ProductEditDialog";
 
 const ProductTable = ({rows, refreshData}) => {
 

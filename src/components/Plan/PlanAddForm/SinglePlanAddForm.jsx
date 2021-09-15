@@ -12,7 +12,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
-import {postPlan} from "../../service/planService";
+import {postPlan} from "../../../service/planService";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {

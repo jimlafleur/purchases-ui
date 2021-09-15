@@ -1,4 +1,6 @@
-import {lighten, makeStyles} from "@material-ui/core/styles";
+import {lighten} from "@material-ui/core/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
 
 export const useToolbarStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +19,14 @@ export const useToolbarStyles = makeStyles((theme) => ({
             },
     title: {
         flex: '1 1 100%',
+    },
+    button: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+    extendedIcon: {
+        marginRight: theme.spacing(1),
     },
 }));
 
@@ -41,6 +51,16 @@ export const useTableStyles = makeStyles((theme) => ({
         position: 'absolute',
         top: 20,
         width: 1,
+    },
+}));
+
+export const useFormControlStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 240,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
     },
 }));
 

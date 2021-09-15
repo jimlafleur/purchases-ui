@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import SinglePlanAddForm from "./SinglePlanAddForm";
 import WeeklyPlanAddForm from "./WeeklyPlanAddForm";
 import PeriodicPlanAddForm from "./PeriodicPlanAddForm";
-import {getAllLists} from "../../service/shoppingListService";
+import {getAllLists} from "../../../service/shoppingListService";
 
 function TabPanel(props) {
     const {children, value, index} = props;

@@ -14,6 +14,6 @@ export const deleteProduct = (productId, refreshProducts) => {
     deleteRequest(productId, productsUrl, refreshProducts)
 }
 
-export const editProduct = (product, refreshProducts, params) => {
+export const putProduct = (product, refreshProducts, params) => {
     putRequest(product, productsUrl, refreshProducts, params)
 }

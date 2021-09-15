@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import {useToolbarStyles} from "./constants";
 
-const CustomTableToolbar = ({tittle, count}) => {
+const CustomTableToolbar = ({tittle, count, addButton}) => {
 
     const classes = useToolbarStyles()
 
@@ -13,6 +13,7 @@ const CustomTableToolbar = ({tittle, count}) => {
             <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
                 {tittle} {count > 0 ? `(${count})` : ``}
             </Typography>
+            {!!addButton && (<div className={classes.button}>{addButton()}</div>)}
         </Toolbar>
     );
 };

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {putCategory} from "../../service/categoryService";
-import {CATEGORY_EDIT_DIALOG_TITTLE, CATEGORY_SAVE_TOOLTIP, validateCategory} from "./categoryConstants";
 import {useAddFormStyles} from "../CustomTable/constants";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -11,35 +10,34 @@ import Fab from "@material-ui/core/Fab";
 import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
 import TextField from "@material-ui/core/TextField";
+import {
+    SHOPPING_LIST_EDIT_DIALOG_TITTLE,
+    SHOPPING_LIST_SAVE_TOOLTIP,
+    validateShoppingList
+} from "./shoppingListConstants";
+import {putList} from "../../service/shoppingListService";
 
-const CategoryEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
+const ShoppingListEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
 
     const classes = useAddFormStyles();
     const [name, setName] = useState(currentRow?.name)
-    const [description, setDescription] = useState(currentRow?.description)
 
     useEffect(() => {
-        setName(currentRow?.name)
-        setDescription(currentRow?.description)
+        setName(currentRow.name)
     }, [currentRow])
 
     const nameChanged = event => {
         setName(event.target.value);
     }
 
-    const descriptionChanged = event => {
-        setDescription(event.target.value);
-    }
-
     const resetCategoryForm = () => {
-        setName(currentRow?.name)
-        setDescription(currentRow?.description)
+        setName(currentRow.name)
     }
 
     const save = () => {
-        const newCategory = {name, description, id: currentRow?.id}
-        if (validateCategory(newCategory)) {
-            putCategory(newCategory, refreshData)
+        const newShoppingList = {name, id: currentRow.id}
+        if (validateShoppingList(newShoppingList)) {
+            putList(newShoppingList, refreshData)
             closeDialog()
         }
     }
@@ -51,15 +49,14 @@ const CategoryEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
 
     return (
         <Dialog open={isOpen} onClose={cancel}>
-            <DialogTitle>{CATEGORY_EDIT_DIALOG_TITTLE}</DialogTitle>
+            <DialogTitle>{SHOPPING_LIST_EDIT_DIALOG_TITTLE}</DialogTitle>
             <DialogContent>
                 <form className={classes.root}>
                     <TextField value={name} onChange={nameChanged} label="Название"/>
-                    <TextField value={description} onChange={descriptionChanged} label="Описание"/>
                 </form>
             </DialogContent>
             <DialogActions>
-                <Tooltip title={CATEGORY_SAVE_TOOLTIP}>
+                <Tooltip title={SHOPPING_LIST_SAVE_TOOLTIP}>
                     <Fab color="secondary" aria-label="save">
                         <SaveIcon onClick={save}/>
                     </Fab>
@@ -74,4 +71,4 @@ const CategoryEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
     )
 }
 
-export default CategoryEditDialog
+export default ShoppingListEditDialog

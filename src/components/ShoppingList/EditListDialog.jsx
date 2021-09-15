@@ -8,7 +8,7 @@ import Fab from "@material-ui/core/Fab";
 import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
 import TextField from "@material-ui/core/TextField";
-import {editList} from "../../service/shoppingListService";
+import {putList} from "../../service/shoppingListService";
 
 const EditListDialog = ({list, refreshLists, isOpen, closeDialog}) => {
     const [name, setName] = useState(list.name)
@@ -18,7 +18,7 @@ const EditListDialog = ({list, refreshLists, isOpen, closeDialog}) => {
     }
 
     const save = () => {
-        editList({name, id: list.id}, refreshLists)
+        putList({name, id: list.id}, refreshLists)
         closeDialog()
     }
     return (

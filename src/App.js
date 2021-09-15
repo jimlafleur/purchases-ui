@@ -4,12 +4,12 @@ import MyNavbar from "./MyNavbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from "react";
 import ShoppingLists from "./components/ShoppingList/ShoppingLists";
-import ShoppingList from "./components/ShoppingList/ShoppingList";
 import Container from "@material-ui/core/Container";
 import InitForm from "./Init/InitForm";
-import EditList from "./components/ShoppingList/EditList";
+import EditList from "./components/ShoppingList/Goods/EditList";
 import Products from "./components/Product/Products";
 import Plans from "./components/Plan/Plans";
+import Purchases from "./components/ShoppingList/Purchase/Purchases";
 
 class App extends Component {
     render() {
@@ -22,7 +22,7 @@ class App extends Component {
                     <Container maxWidth="md">
                         <Switch>
                             <Route history={history} exact path='/lists' component={ShoppingLists}/>
-                            <Route history={history} exact path='/lists/:id' component={ShoppingList}/>
+                            <Route history={history} exact path='/lists/:id' component={Purchases}/>
                             <Route history={history} exact path='/categories' component={Categories}/>
                             <Route history={history} exact path='/products' component={Products}/>
                             <Route history={history} exact path='/plans' component={Plans}/>

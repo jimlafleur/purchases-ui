@@ -18,6 +18,6 @@ export const deleteList = (listId, fetchLists) => {
     deleteRequest(listId, listsUrl, fetchLists)
 }
 
-export const editList = (list, refreshLists) => {
+export const putList = (list, refreshLists) => {
     putRequest(list, listsUrl, refreshLists)
 }

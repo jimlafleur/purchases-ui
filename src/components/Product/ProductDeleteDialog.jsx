@@ -1,5 +1,5 @@
 import React from "react";
-import {getDeleteMessage, PRODUCT_DELETE_DIALOG_TITTLE} from "./constants";
+import {getDeleteMessage, PRODUCT_DELETE_DIALOG_TITTLE} from "./productConstants";
 import {deleteProduct} from "../../service/productService";
 import CustomDeleteDialog from "../CustomTable/CustomDeleteDialog";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import CustomRow from "../CustomTable/CustomRow";
-import {CATEGORY_DELETE_DIALOG_TOOLTIP, CATEGORY_EDIT_DIALOG_TOOLTIP} from "./constants";
+import {CATEGORY_DELETE_DIALOG_TOOLTIP, CATEGORY_EDIT_DIALOG_TOOLTIP} from "./categoryConstants";
 import CategoryCells from "./CategoryCells";
 
 const CategoryRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {

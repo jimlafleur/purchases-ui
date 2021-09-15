@@ -10,8 +10,8 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
-const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittle, deleteDialog}) => {
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittle, deleteDialog, addButton}) => {
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [page, setPage] = React.useState(0);
 
     const [order, setOrder] = useState('asc');
@@ -33,8 +33,6 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
     };
 
     const handleChangeRowsPerPage = (event) => {
-        console.log(event.target.value)
-
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
@@ -56,7 +54,7 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
             {deleteDialog({currentRow, refreshData, isOpen: isDelete, closeDialog: closeDeleteDialog})}
 
             <Paper>
-                <CustomTableToolbar tittle={tittle} count={rows.length}/>
+                <CustomTableToolbar tittle={tittle} count={rows?.length} addButton={addButton}/>
                 <TableContainer>
                     <Table>
                         <CustomTableHead
@@ -64,13 +62,13 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
-                            rowCount={rows.length}/>
+                            rowCount={rows?.length}/>
                         <TableBody>
                             {stableSort(rows, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => createRow({row, setIsEdit, setIsDelete, setCurrentRow}))}
                             {emptyRows > 0 && (
-                                <TableRow style={{height:  53 * emptyRows}}>
+                                <TableRow style={{height: 53 * emptyRows}}>
                                     <TableCell colSpan={6}/>
                                 </TableRow>
                             )}

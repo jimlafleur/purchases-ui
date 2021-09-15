@@ -1,16 +1,18 @@
 import React from "react";
+import CustomRow from "../CustomTable/CustomRow";
+import PlanCells from "./PlanCells";
+import {PLAN_DELETE_DIALOG_TOOLTIP, PLAN_EDIT_DIALOG_TOOLTIP} from "./planConstants";
 
-const PlanRow = ({plan}) => {
+const PlanRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {
 
     return (
-        <tr>
-            <td className="col-md-1">
-                {plan.name}
-            </td>
-            <td className="col-md-1">
-                {plan.date}
-            </td>
-        </tr>
+        <CustomRow cells={PlanCells}
+                   deleteTooltip={PLAN_DELETE_DIALOG_TOOLTIP}
+                   editTooltip={PLAN_EDIT_DIALOG_TOOLTIP}
+                   row={row}
+                   setCurrentRow={setCurrentRow}
+                   setIsDelete={setIsDelete}
+                   setIsEdit={setIsEdit}/>
     )
 }
 

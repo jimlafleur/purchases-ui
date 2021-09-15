@@ -1,7 +1,7 @@
 import React from "react";
 import CustomRow from "../CustomTable/CustomRow";
 import ProductCells from "./ProductCells";
-import {PRODUCT_DELETE_DIALOG_TOOLTIP, PRODUCT_EDIT_DIALOG_TOOLTIP} from "./constants";
+import {PRODUCT_DELETE_DIALOG_TOOLTIP, PRODUCT_EDIT_DIALOG_TOOLTIP} from "./productConstants";
 
 const ProductRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {
 

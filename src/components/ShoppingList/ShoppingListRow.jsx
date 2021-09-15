@@ -1,71 +1,18 @@
-import React, {useState} from "react";
-import {baseClientURL} from "../../constants";
-import Fab from "@material-ui/core/Fab";
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from "@material-ui/core/IconButton";
-import EditListDialog from "./EditListDialog";
-import Tooltip from "@material-ui/core/Tooltip";
-import DeleteListDialog from "./DeleteListDialog";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
+import React from "react";
+import CustomRow from "../CustomTable/CustomRow";
+import {SHOPPING_LIST_DELETE_DIALOG_TOOLTIP, SHOPPING_LIST_EDIT_DIALOG_TOOLTIP} from "./shoppingListConstants";
+import ShoppingListCells from "./ShoppingListCells";
 
-const ShoppingListRow = ({list, refreshLists}) => {
-
-    const [isEdit, setIsEdit] = useState(false)
-    const [isDelete, setIsDelete] = useState(false);
-
-    const openDeleteDialog = () => {
-        setIsDelete(true);
-    }
-
-    const closeDeleteDialog = () => {
-        setIsDelete(false);
-    }
-
-    const openEditDialog = () => {
-        setIsEdit(true);
-    }
-
-    const closeEditDialog = () => {
-        setIsEdit(false);
-    }
+const ShoppingListRow = ({row, setIsEdit, setIsDelete, setCurrentRow}) => {
 
     return (
-        <TableRow>
-            <TableCell align="left">
-                <Tooltip title="Кликните по названию списка, чтобы открыть его">
-                    <a href={`${baseClientURL}lists/${list.id}`}>
-                        {list.name}
-                    </a>
-                </Tooltip>
-            </TableCell>
-
-            <TableCell align="right" width={10}>
-                <Tooltip title="Переименовать список">
-                    <Fab color="secondary" aria-label="edit">
-                        <EditIcon onClick={openEditDialog}/>
-                    </Fab>
-                </Tooltip>
-            </TableCell>
-
-            <TableCell align="right" width={10}>
-                <Tooltip title="Удалить список">
-                    <IconButton aria-label="delete">
-                        <DeleteIcon onClick={openDeleteDialog}/>
-                    </IconButton>
-                </Tooltip>
-            </TableCell>
-            <EditListDialog list={list}
-                            refreshLists={refreshLists}
-                            isOpen={isEdit}
-                            closeDialog={closeEditDialog}/>
-            <DeleteListDialog list={list}
-                              refreshLists={refreshLists}
-                              isOpen={isDelete}
-                              closeDialog={closeDeleteDialog}/>
-
-        </TableRow>
+        <CustomRow cells={ShoppingListCells}
+                   deleteTooltip={SHOPPING_LIST_DELETE_DIALOG_TOOLTIP}
+                   editTooltip={SHOPPING_LIST_EDIT_DIALOG_TOOLTIP}
+                   row={row}
+                   setCurrentRow={setCurrentRow}
+                   setIsDelete={setIsDelete}
+                   setIsEdit={setIsEdit}/>
     )
 }
 

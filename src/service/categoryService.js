@@ -14,6 +14,6 @@ export const deleteCategory = (categoryId, refreshCategories) => {
     deleteRequest(categoryId, categoriesUrl, refreshCategories)
 }
 
-export const editCategory = (category, refreshCategories) => {
+export const putCategory = (category, refreshCategories) => {
     putRequest(category, categoriesUrl, refreshCategories)
 }

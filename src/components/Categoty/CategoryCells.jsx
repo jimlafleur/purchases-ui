@@ -5,7 +5,7 @@ const CategoryCells = row => {
 
     return (
         <>
-            <TableCell>{row.name}</TableCell>
+            <TableCell width='40%'>{row.name}</TableCell>
             <TableCell>{row.description}</TableCell>
         </>
     )
