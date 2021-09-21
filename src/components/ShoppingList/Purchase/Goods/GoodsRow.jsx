@@ -3,7 +3,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import {deletePurchase, postPurchase, putPurchase} from "../../../service/purchaseService";
+import {deletePurchase, postPurchase, putPurchase} from "../../../../service/purchaseService";
 import DeleteIcon from "@material-ui/icons/Delete";
 import RemoveIcon from "@material-ui/icons/Remove";
 

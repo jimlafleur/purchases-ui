@@ -3,7 +3,7 @@ import {getAllLists} from "../../service/shoppingListService";
 import ShoppingListAddForm from "./ShoppingListAddForm";
 import ShoppingListTable from "./ShoppingListTable";
 
-const ShoppingLists = () => {
+const ShoppingLists = ({showSuccess, showError}) => {
 
     const [lists, setLists] = useState([])
 
@@ -12,8 +12,8 @@ const ShoppingLists = () => {
     useEffect(fetchLists, [])
 
     return <div className="container-fluid">
-        <ShoppingListAddForm fetchLists={fetchLists}/>
-        <ShoppingListTable refreshData={fetchLists} rows={lists}/>
+        <ShoppingListAddForm fetchLists={fetchLists} showError={showError} showSuccess={showSuccess}/>
+        <ShoppingListTable refreshData={fetchLists} rows={lists} showError={showError} showSuccess={showSuccess}/>
     </div>
 
 }

@@ -3,11 +3,11 @@ import {postCategory} from "../../service/categoryService";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import {validateCategory} from "./categoryConstants";
+import {CATEGORY_ADDED, CATEGORY_ERROR, validateCategory} from "./categoryConstants";
 import TextField from "@material-ui/core/TextField";
 import {useAddFormStyles} from "../CustomTable/constants";
 
-const CategoryAddForm = ({fetchCategories}) => {
+const CategoryAddForm = ({fetchCategories, showSuccess, showError}) => {
 
     const classes = useAddFormStyles();
 
@@ -32,6 +32,9 @@ const CategoryAddForm = ({fetchCategories}) => {
         if (validateCategory(category)) {
             postCategory(category, fetchCategories)
             clearCategoryAddForm()
+            showSuccess(CATEGORY_ADDED)
+        } else {
+            showError(CATEGORY_ERROR)
         }
     }
 

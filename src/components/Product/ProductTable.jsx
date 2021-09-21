@@ -5,7 +5,7 @@ import ProductRow from "./ProductRow";
 import ProductDeleteDialog from "./ProductDeleteDialog";
 import ProductEditDialog from "./ProductEditDialog";
 
-const ProductTable = ({rows, refreshData}) => {
+const ProductTable = ({rows, refreshData, showSuccess, showError}) => {
 
     return <CustomTable headCells={ProductHeadCells}
                         rows={rows}
@@ -13,6 +13,8 @@ const ProductTable = ({rows, refreshData}) => {
                         editDialog={ProductEditDialog}
                         refreshData={refreshData}
                         tittle={PRODUCT_TITTLE}
+                        showError={showError}
+                        showSuccess={showSuccess}
                         deleteDialog={ProductDeleteDialog}/>
 }
 

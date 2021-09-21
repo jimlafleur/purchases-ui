@@ -1,6 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {putCategory} from "../../service/categoryService";
-import {CATEGORY_EDIT_DIALOG_TITTLE, CATEGORY_SAVE_TOOLTIP, validateCategory} from "./categoryConstants";
+import {
+    CATEGORY_EDIT_DIALOG_TITTLE,
+    CATEGORY_EDITED,
+    CATEGORY_ERROR,
+    CATEGORY_SAVE_TOOLTIP,
+    validateCategory
+} from "./categoryConstants";
 import {useAddFormStyles} from "../CustomTable/constants";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -12,7 +18,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
 import TextField from "@material-ui/core/TextField";
 
-const CategoryEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
+const CategoryEditDialog = ({currentRow, refreshData, isOpen, closeDialog, showSuccess, showError}) => {
 
     const classes = useAddFormStyles();
     const [name, setName] = useState(currentRow?.name)
@@ -41,6 +47,9 @@ const CategoryEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
         if (validateCategory(newCategory)) {
             putCategory(newCategory, refreshData)
             closeDialog()
+            showSuccess(CATEGORY_EDITED)
+        } else {
+            showError(CATEGORY_ERROR)
         }
     }
 

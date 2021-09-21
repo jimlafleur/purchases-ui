@@ -33,9 +33,9 @@ export const deleteRequest = (id, url, refreshData) => {
         });
 }
 
-export const putRequest = (object, url, refreshData) => {
+export const putRequest = (object, url, refreshData, params) => {
     console.log(object)
-    api.put(`${baseServerURL}${url}/${object.id}`, object)
+    api.put(`${baseServerURL}${url}/${object.id}`, object, {params: params})
         .then(response => {
             console.log(response);
             refreshData()

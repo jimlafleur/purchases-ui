@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {putCategory} from "../../service/categoryService";
 import {useAddFormStyles} from "../CustomTable/constants";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -16,8 +15,9 @@ import {
     validateShoppingList
 } from "./shoppingListConstants";
 import {putList} from "../../service/shoppingListService";
+import {PRODUCT_EDITED, PRODUCT_ERROR} from "../Product/productConstants";
 
-const ShoppingListEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
+const ShoppingListEditDialog = ({currentRow, refreshData, isOpen, closeDialog, showSuccess, showError}) => {
 
     const classes = useAddFormStyles();
     const [name, setName] = useState(currentRow?.name)
@@ -39,6 +39,9 @@ const ShoppingListEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) 
         if (validateShoppingList(newShoppingList)) {
             putList(newShoppingList, refreshData)
             closeDialog()
+            showSuccess(PRODUCT_EDITED)
+        } else {
+            showError(PRODUCT_ERROR)
         }
     }
 

@@ -10,7 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 
-const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittle, deleteDialog, addButton}) => {
+const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittle, deleteDialog, addButton, showSuccess, showError}) => {
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [page, setPage] = React.useState(0);
 
@@ -50,8 +50,15 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
 
     return (
         <div>
-            {editDialog({currentRow, refreshData, isOpen: isEdit, closeDialog: closeEditDialog})}
-            {deleteDialog({currentRow, refreshData, isOpen: isDelete, closeDialog: closeDeleteDialog})}
+            {editDialog({
+                currentRow,
+                refreshData,
+                isOpen: isEdit,
+                closeDialog: closeEditDialog,
+                showSuccess,
+                showError
+            })}
+            {deleteDialog({currentRow, refreshData, isOpen: isDelete, closeDialog: closeDeleteDialog, showSuccess})}
 
             <Paper>
                 <CustomTableToolbar tittle={tittle} count={rows?.length} addButton={addButton}/>
