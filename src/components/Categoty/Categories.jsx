@@ -3,7 +3,7 @@ import CategoryAddForm from "./CategoryAddForm";
 import {getCategories} from "../../service/categoryService";
 import CategoryTable from "./CategoryTable";
 
-const Categories = () => {
+const Categories = ({showSuccess, showError}) => {
 
     const [categories, setCategories] = useState([])
 
@@ -13,8 +13,14 @@ const Categories = () => {
 
     return (
         <div className="container-fluid">
-            <CategoryAddForm fetchCategories={fetchCategories}/>
-            <CategoryTable rows={categories} refreshData={fetchCategories}/>
+            <CategoryAddForm fetchCategories={fetchCategories}
+                             showSuccess={showSuccess}
+                             showError={showError}/>
+
+            <CategoryTable rows={categories}
+                           refreshData={fetchCategories}
+                           showSuccess={showSuccess}
+                           showError={showError}/>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import {getCategories} from "../../service/categoryService";
 import {getProducts} from "../../service/productService";
 import ProductTable from "./ProductTable";
 
-const Products = () => {
+const Products = ({showSuccess, showError}) => {
 
     const [products, setProducts] = useState([])
     const [categories, setCategories] = useState([])
@@ -18,8 +18,14 @@ const Products = () => {
 
     return (
         <div className="container-fluid">
-            <ProductAddForm refreshProducts={fetchProducts} categories={categories}/>
-            <ProductTable refreshData={fetchProducts} rows={products}/>
+            <ProductAddForm refreshProducts={fetchProducts}
+                            categories={categories}
+                            showError={showError}
+                            showSuccess={showSuccess}/>
+            <ProductTable refreshData={fetchProducts}
+                          rows={products}
+                          showError={showError}
+                          showSuccess={showSuccess}/>
         </div>
     )
 }

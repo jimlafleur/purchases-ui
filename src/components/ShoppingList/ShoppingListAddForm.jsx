@@ -3,11 +3,11 @@ import {postLists} from "../../service/shoppingListService";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from '@material-ui/icons/Add';
 import TextField from "@material-ui/core/TextField";
-import {isBlank} from "../../utils/utils";
 import Tooltip from "@material-ui/core/Tooltip";
 import {useAddFormStyles} from "../CustomTable/constants";
+import {SHOPPING_LIST_ADDED, SHOPPING_LIST_ERROR, validateShoppingList} from "./shoppingListConstants";
 
-const ShoppingListAddForm = ({fetchLists}) => {
+const ShoppingListAddForm = ({fetchLists, showSuccess, showError}) => {
     const classes = useAddFormStyles();
 
     const [name, setName] = useState('')
@@ -18,10 +18,13 @@ const ShoppingListAddForm = ({fetchLists}) => {
 
     const saveList = () => {
         const list = {name}
-        if (!isBlank(name)) {
+        if (validateShoppingList(list)) {
             postLists(list, fetchLists)
+            setName('')
+            showSuccess(SHOPPING_LIST_ADDED)
+        } else {
+            showError(SHOPPING_LIST_ERROR)
         }
-        setName('')
     }
 
     return (

@@ -1,15 +1,15 @@
-import Categories from "./components/Categoty/Categories";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom"
 import MyNavbar from "./MyNavbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from "react";
-import ShoppingLists from "./components/ShoppingList/ShoppingLists";
 import Container from "@material-ui/core/Container";
 import InitForm from "./Init/InitForm";
-import EditList from "./components/ShoppingList/Goods/EditList";
-import Products from "./components/Product/Products";
+import EditList from "./components/ShoppingList/Purchase/Goods/EditList";
 import Plans from "./components/Plan/Plans";
 import Purchases from "./components/ShoppingList/Purchase/Purchases";
+import ShoppingListsAlerted from "./components/Alerts/ShoppingListsAlerted";
+import CategoriesAlerted from "./components/Alerts/CategoriesAlerted";
+import ProductsAlerted from "./components/Alerts/ProductsAlerted";
 
 class App extends Component {
     render() {
@@ -21,10 +21,10 @@ class App extends Component {
                     <MyNavbar/>
                     <Container maxWidth="md">
                         <Switch>
-                            <Route history={history} exact path='/lists' component={ShoppingLists}/>
+                            <Route history={history} exact path='/lists' component={ShoppingListsAlerted}/>
                             <Route history={history} exact path='/lists/:id' component={Purchases}/>
-                            <Route history={history} exact path='/categories' component={Categories}/>
-                            <Route history={history} exact path='/products' component={Products}/>
+                            <Route history={history} exact path='/categories' component={CategoriesAlerted}/>
+                            <Route history={history} exact path='/products' component={ProductsAlerted}/>
                             <Route history={history} exact path='/plans' component={Plans}/>
                             <Route history={history} exact path='/lists/:id/edit' component={EditList}/>
                             <Route history={history} exact path='/init' component={InitForm}/>
@@ -32,7 +32,6 @@ class App extends Component {
                         </Switch>
                     </Container>
                 </Container>
-
             </div>
         );
     }

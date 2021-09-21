@@ -5,7 +5,7 @@ import Table from "@material-ui/core/Table";
 import {classes} from "istanbul-lib-coverage";
 import TableBody from "@material-ui/core/TableBody";
 import GoodsRow from "./GoodsRow";
-import {getGoods} from "../../../service/goodsService";
+import {getGoods} from "../../../../service/goodsService";
 import TextField from "@material-ui/core/TextField";
 
 const GoodsList = ({listId}) => {
