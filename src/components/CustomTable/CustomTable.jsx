@@ -21,7 +21,6 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
     const [isEdit, setIsEdit] = useState(false)
     const [isDelete, setIsDelete] = useState(false);
 
-
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -47,7 +46,6 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
 
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
-
     return (
         <div>
             {editDialog({
@@ -62,35 +60,43 @@ const CustomTable = ({rows, headCells, createRow, editDialog, refreshData, tittl
 
             <Paper>
                 <CustomTableToolbar tittle={tittle} count={rows?.length} addButton={addButton}/>
-                <TableContainer>
-                    <Table>
-                        <CustomTableHead
-                            cells={headCells}
-                            order={order}
-                            orderBy={orderBy}
-                            onRequestSort={handleRequestSort}
-                            rowCount={rows?.length}/>
-                        <TableBody>
-                            {stableSort(rows, getComparator(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map(row => createRow({row, setIsEdit, setIsDelete, setCurrentRow}))}
-                            {emptyRows > 0 && (
-                                <TableRow style={{height: 53 * emptyRows}}>
-                                    <TableCell colSpan={6}/>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                />
+                {rows?.length > 0
+                    ? (<>
+                        <TableContainer>
+                            <Table>
+                                <CustomTableHead
+                                    cells={headCells}
+                                    order={order}
+                                    orderBy={orderBy}
+                                    onRequestSort={handleRequestSort}
+                                    rowCount={rows?.length}/>
+                                <TableBody>
+                                    {stableSort(rows, getComparator(order, orderBy))
+                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        .map(row => createRow({row, setIsEdit, setIsDelete, setCurrentRow}))}
+                                    {emptyRows > 0 && (
+                                        <TableRow style={{height: 53 * emptyRows}}>
+                                            <TableCell colSpan={6}/>
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 25]}
+                            component="div"
+                            count={rows.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            onChangePage={handleChangePage}
+                            onChangeRowsPerPage={handleChangeRowsPerPage}
+                        />
+                    </>)
+                    : (<div>
+                        <h3 align="center">{`${tittle} пока отсутствуют :(`}</h3>
+                        <h3 align="center">Но вы можете их добавить :)</h3>
+                    </div>)
+                }
             </Paper>
         </div>
     );

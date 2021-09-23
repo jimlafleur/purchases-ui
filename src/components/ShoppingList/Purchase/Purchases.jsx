@@ -7,7 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import Tooltip from "@material-ui/core/Tooltip";
 
-const Purchases = ({match}) => {
+const Purchases = ({match, showSuccess}) => {
 
     const [list, setList] = useState({})
 
@@ -19,6 +19,7 @@ const Purchases = ({match}) => {
         <div className="container-fluid">
             <PurchaseTable rows={list?.purchaseList ?? []}
                            refreshData={fetchList}
+                           showSuccess={showSuccess}
                            addButton={() => (
                                <Tooltip title="Добавить покупки">
                                    <Fab color="primary" aria-label="add" size="big"

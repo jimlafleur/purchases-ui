@@ -5,7 +5,7 @@ import {PURCHASE_TITTLE, PurchaseHeadCells} from "./purchaseConstants";
 import PurchaseDeleteDialog from "./PurchaseDeleteDialog";
 import PurchaseEditDialog from "./PurchaseEditDialog";
 
-const PurchaseTable = ({rows, refreshData, addButton}) => {
+const PurchaseTable = ({rows, refreshData, addButton, showSuccess}) => {
 
     return <CustomTable headCells={PurchaseHeadCells}
                         rows={rows}
@@ -14,6 +14,7 @@ const PurchaseTable = ({rows, refreshData, addButton}) => {
                         refreshData={refreshData}
                         tittle={PURCHASE_TITTLE}
                         deleteDialog={PurchaseDeleteDialog}
+                        showSuccess={showSuccess}
                         addButton={addButton}/>
 }
 

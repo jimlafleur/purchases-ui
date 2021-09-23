@@ -12,7 +12,11 @@ export const PURCHASE_DELETE_DIALOG_TITTLE = "Удаление покупки"
 export const PURCHASE_EDIT_DIALOG_TITTLE = "Редактирование покупки"
 export const PURCHASE_SAVE_TOOLTIP = "Сохранить покупку"
 
-export const getDeleteMessage = name => `Вы действительно хотите удалить категорию товара '${name}'? Данное действие также удалит все продукты и покупки, связанные с этой категорией`
+export const PURCHASE_REMOVED = "Покупка успешно удалена"
+
+export const getEditDialogTittle = name => `Редактирование покупки '${name}'`
+
+export const getDeleteMessage = name => `Вы действительно хотите удалить покупку '${name}'?`
 
 // const editCoast = event => {
 //     const newCoast = event.target.valueAsNumber

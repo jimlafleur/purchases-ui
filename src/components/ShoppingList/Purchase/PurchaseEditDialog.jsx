@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {putCategory} from "../../../service/categoryService";
 import {useAddFormStyles} from "../../CustomTable/constants";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -10,52 +9,57 @@ import Fab from "@material-ui/core/Fab";
 import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
 import TextField from "@material-ui/core/TextField";
-import {PURCHASE_EDIT_DIALOG_TITTLE, PURCHASE_SAVE_TOOLTIP} from "./purchaseConstants";
+import {getEditDialogTittle, PURCHASE_SAVE_TOOLTIP} from "./purchaseConstants";
+import {putPurchase} from "../../../service/purchaseService";
 
 const PurchaseEditDialog = ({currentRow, refreshData, isOpen, closeDialog}) => {
 
     const classes = useAddFormStyles();
-    const [name, setName] = useState(currentRow?.name)
-    const [description, setDescription] = useState(currentRow?.description)
+    const [count, setCount] = useState(currentRow?.count)
+    const [coast, setCoast] = useState(currentRow?.coast)
 
     useEffect(() => {
-        setName(currentRow.name)
-        setDescription(currentRow.description)
+        setCount(currentRow.count)
+        setCoast(currentRow.coast)
     }, [currentRow])
 
-    const nameChanged = event => {
-        setName(event.target.value);
+    const countChanged = event => {
+        const newCount = event.target.value
+        if (!isNaN(newCount) && newCount >= 0) {
+            setCount(newCount)
+        }
     }
 
-    const descriptionChanged = event => {
-        setDescription(event.target.value);
+    const coastChanged = event => {
+        const newCoast = event.target.value
+        if (!isNaN(newCoast) && newCoast >= 0) {
+            setCoast(newCoast)
+        }
     }
 
-    const resetCategoryForm = () => {
-        setName(currentRow.name)
-        setDescription(currentRow.description)
+    const resetPurchaseForm = () => {
+        setCount(currentRow.count)
+        setCoast(currentRow.coast)
     }
 
     const save = () => {
-        const newCategory = {name, description, id: currentRow.id}
-        // if (validateCategory(newCategory)) {
-            putCategory(newCategory, refreshData)
-            closeDialog()
-        // }
+        const newPurchase = {id: currentRow.id, count, coast}
+        putPurchase(newPurchase, refreshData)
+        closeDialog()
     }
 
     const cancel = () => {
         closeDialog()
-        resetCategoryForm()
+        resetPurchaseForm()
     }
 
     return (
         <Dialog open={isOpen} onClose={cancel}>
-            <DialogTitle>{PURCHASE_EDIT_DIALOG_TITTLE}</DialogTitle>
+            <DialogTitle>{getEditDialogTittle(currentRow.name)}</DialogTitle>
             <DialogContent>
                 <form className={classes.root}>
-                    <TextField value={name} onChange={nameChanged} label="Название"/>
-                    <TextField value={description} onChange={descriptionChanged} label="Описание"/>
+                    <TextField value={count} onChange={countChanged} label="Количество (шт.)"/>
+                    <TextField value={coast} onChange={coastChanged} label="Стоимость (₽)"/>
                 </form>
             </DialogContent>
             <DialogActions>

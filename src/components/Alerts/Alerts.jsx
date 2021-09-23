@@ -2,42 +2,42 @@ import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import React, {useState} from "react";
 
-const Alerts = ({component}) => {
+const Alerts = ({component, match}) => {
 
-    const [shawError, setShawError] = useState(false)
-    const [shawSuccess, setShawSuccess] = useState(false)
+    const [isShowError, setshowError] = useState(false)
+    const [isShowSuccess, setshowSuccess] = useState(false)
     const [errorText, setErrorText] = useState(false)
     const [successText, setSuccessText] = useState(false)
 
     const showError = (message) => {
         setErrorText(message)
-        setShawSuccess(false)
-        setShawError(true)
+        setshowSuccess(false)
+        setshowError(true)
     }
 
     const showSuccess = (message) => {
         setSuccessText(message)
-        setShawError(false)
-        setShawSuccess(true)
+        setshowError(false)
+        setshowSuccess(true)
     }
 
     const handleCloseError = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-        setShawError(false);
+        setshowError(false);
     };
     const handleCloseSuccess = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-        setShawSuccess(false);
+        setshowSuccess(false);
     };
 
     return (<div>
-            {component({showSuccess, showError})}
+            {component({showSuccess, showError, match})}
             <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'left'}}
-                      open={shawError}
+                      open={isShowError}
                       autoHideDuration={6000}
                       onClose={handleCloseError}>
                 <Alert onClose={handleCloseError} severity="error">
@@ -45,7 +45,7 @@ const Alerts = ({component}) => {
                 </Alert>
             </Snackbar>
             <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'left'}}
-                      open={shawSuccess}
+                      open={isShowSuccess}
                       autoHideDuration={6000}
                       onClose={handleCloseSuccess}>
                 <Alert onClose={handleCloseSuccess} severity="success">

@@ -11,11 +11,12 @@ import CloseIcon from "@material-ui/icons/Close";
 import TextField from "@material-ui/core/TextField";
 import {
     SHOPPING_LIST_EDIT_DIALOG_TITTLE,
+    SHOPPING_LIST_EDITED,
+    SHOPPING_LIST_ERROR,
     SHOPPING_LIST_SAVE_TOOLTIP,
     validateShoppingList
 } from "./shoppingListConstants";
 import {putList} from "../../service/shoppingListService";
-import {PRODUCT_EDITED, PRODUCT_ERROR} from "../Product/productConstants";
 
 const ShoppingListEditDialog = ({currentRow, refreshData, isOpen, closeDialog, showSuccess, showError}) => {
 
@@ -39,9 +40,9 @@ const ShoppingListEditDialog = ({currentRow, refreshData, isOpen, closeDialog, s
         if (validateShoppingList(newShoppingList)) {
             putList(newShoppingList, refreshData)
             closeDialog()
-            showSuccess(PRODUCT_EDITED)
+            showSuccess(SHOPPING_LIST_EDITED)
         } else {
-            showError(PRODUCT_ERROR)
+            showError(SHOPPING_LIST_ERROR)
         }
     }
 

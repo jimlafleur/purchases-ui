@@ -7,32 +7,32 @@ import {deletePurchase, postPurchase, putPurchase} from "../../../../service/pur
 import DeleteIcon from "@material-ui/icons/Delete";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const GoodsRow = ({product, listId, refreshList}) => {
+const GoodsRow = ({goods, listId, refreshList}) => {
 
     const addPurchase = () => {
         const purchase = {count: 1, coast: 0}
-        const params = {productId: product.productId, listId}
+        const params = {productId: goods.productId, listId}
         postPurchase(purchase, refreshList, params)
     }
 
     const increase = () => {
-        const purchase = {id: product.purchaseId, count: product.count + 1, coast: product.coast}
+        const purchase = {id: goods.purchaseId, count: goods.count + 1, coast: goods.coast}
         putPurchase(purchase, refreshList)
     }
 
     const decrease = () => {
-        const purchase = {id: product.purchaseId, count: product.count - 1, coast: product.coast}
+        const purchase = {id: goods.purchaseId, count: goods.count - 1, coast: goods.coast}
         putPurchase(purchase, refreshList)
     }
 
     const removePurchase = () => {
-        deletePurchase(product.purchaseId, refreshList)
+        deletePurchase(goods.purchaseId, refreshList)
     }
 
     return (
-        <TableRow key={product.name}>
+        <TableRow key={goods.name}>
             <TableCell align="left" width="20">
-                {product.count > 0 ?
+                {goods.count > 0 ?
                     <Fab color="primary" aria-label="add" size="small">
                         <AddIcon type="submit" onClick={increase}/>
                     </Fab>
@@ -42,11 +42,11 @@ const GoodsRow = ({product, listId, refreshList}) => {
                     </Fab>
                 }
             </TableCell>
-            <TableCell align="left">{product.name}</TableCell>
-            <TableCell align="right">{product.count > 0 ? product.count : ''}</TableCell>
-            <TableCell align="left" width="20" hidden={product.count < 1}>
+            <TableCell align="left">{goods.name}</TableCell>
+            <TableCell align="right">{goods.count > 0 ? goods.count : ''}</TableCell>
+            <TableCell align="left" width="20" hidden={goods.count < 1}>
                 <Fab color="secondary" size="small">
-                    {product.count > 1
+                    {goods.count > 1
                         ? <RemoveIcon type="submit" onClick={decrease}/>
                         : <DeleteIcon onClick={removePurchase}/>}
                 </Fab>
