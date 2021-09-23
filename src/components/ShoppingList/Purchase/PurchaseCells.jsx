@@ -5,8 +5,8 @@ const PurchaseCells = row => {
 
     return <>
         <TableCell>{row.name}</TableCell>
-        <TableCell>{row.count}</TableCell>
-        <TableCell>{row.coast}</TableCell>
+        <TableCell>{new Intl.NumberFormat('ru-RU').format(row.count)}</TableCell>
+        <TableCell>{new Intl.NumberFormat('ru-RU').format(row.coast)} ₽</TableCell>
         <TableCell>{row.categoryName}</TableCell>
     </>
 }

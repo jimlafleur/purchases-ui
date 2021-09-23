@@ -6,10 +6,10 @@ import Container from "@material-ui/core/Container";
 import InitForm from "./Init/InitForm";
 import EditList from "./components/ShoppingList/Purchase/Goods/EditList";
 import Plans from "./components/Plan/Plans";
-import Purchases from "./components/ShoppingList/Purchase/Purchases";
 import ShoppingListsAlerted from "./components/Alerts/ShoppingListsAlerted";
 import CategoriesAlerted from "./components/Alerts/CategoriesAlerted";
 import ProductsAlerted from "./components/Alerts/ProductsAlerted";
+import PurchasesAlerted from "./components/Alerts/PurchasesAlerted";
 
 class App extends Component {
     render() {
@@ -22,7 +22,7 @@ class App extends Component {
                     <Container maxWidth="md">
                         <Switch>
                             <Route history={history} exact path='/lists' component={ShoppingListsAlerted}/>
-                            <Route history={history} exact path='/lists/:id' component={Purchases}/>
+                            <Route history={history} exact path='/lists/:id' component={PurchasesAlerted}/>
                             <Route history={history} exact path='/categories' component={CategoriesAlerted}/>
                             <Route history={history} exact path='/products' component={ProductsAlerted}/>
                             <Route history={history} exact path='/plans' component={Plans}/>

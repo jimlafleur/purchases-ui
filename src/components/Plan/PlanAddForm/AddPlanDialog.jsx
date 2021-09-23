@@ -15,7 +15,6 @@ const AddPlanDialog = ({isOpen, closeDialog, refreshPlans}) => {
                 <PlanAddForm closeDialog={closeDialog} refreshPlans={refreshPlans}/>
             </DialogContent>
             <DialogActions>
-
             </DialogActions>
         </Dialog>
     )

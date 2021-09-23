@@ -4,8 +4,6 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import AddPlanDialog from "./PlanAddForm/AddPlanDialog";
-import TableContainer from "@material-ui/core/TableContainer";
-import Paper from "@material-ui/core/Paper";
 import PlanTable from "./PlanTable";
 
 const Plans = () => {
@@ -27,15 +25,13 @@ const Plans = () => {
 
     return <div className="container-fluid">
         <AddPlanDialog isOpen={isAdd} closeDialog={closeAddDialog} refreshPlans={fetchPlans}/>
-        <TableContainer component={Paper}>
-            <PlanTable refreshData={fetchPlans}
-                       rows={plans}
-                       addButton={() => <Tooltip title="Добавить план">
-                           <Fab color="primary" aria-label="edit">
-                               <AddIcon onClick={openAddDialog}/>
-                           </Fab>
-                       </Tooltip>}/>
-        </TableContainer>
+        <PlanTable refreshData={fetchPlans}
+                   rows={plans}
+                   addButton={() => <Tooltip title="Добавить план">
+                       <Fab color="primary" aria-label="edit">
+                           <AddIcon onClick={openAddDialog}/>
+                       </Fab>
+                   </Tooltip>}/>
     </div>
 }
 
