@@ -4,34 +4,34 @@ import React, {useState} from "react";
 
 const Alerts = ({component, match}) => {
 
-    const [isShowError, setshowError] = useState(false)
-    const [isShowSuccess, setshowSuccess] = useState(false)
+    const [isShowError, setShowError] = useState(false)
+    const [isShowSuccess, setShowSuccess] = useState(false)
     const [errorText, setErrorText] = useState(false)
     const [successText, setSuccessText] = useState(false)
 
     const showError = (message) => {
         setErrorText(message)
-        setshowSuccess(false)
-        setshowError(true)
+        setShowSuccess(false)
+        setShowError(true)
     }
 
     const showSuccess = (message) => {
         setSuccessText(message)
-        setshowError(false)
-        setshowSuccess(true)
+        setShowError(false)
+        setShowSuccess(true)
     }
 
     const handleCloseError = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-        setshowError(false);
+        setShowError(false);
     };
     const handleCloseSuccess = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-        setshowSuccess(false);
+        setShowSuccess(false);
     };
 
     return (<div>

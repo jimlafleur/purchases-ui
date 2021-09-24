@@ -59,7 +59,6 @@ const PlanAddForm = ({closeDialog, refreshPlans}) => {
             </TabPanel>
         </div>
     );
-
 }
 
 export default PlanAddForm
